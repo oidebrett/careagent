@@ -33,7 +33,7 @@ def init_logging():
 
 class CareAgentFramework:
 
-    MEMORY_FILENAME = "/home/ivob/Projects/llm_engineering/careagent/data/memory.json"
+    MEMORY_FILENAME = "data/memory.json"
 
     def __init__(self):
         init_logging()

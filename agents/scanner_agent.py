@@ -151,6 +151,7 @@ Here are the log entries:
             result.situations = [situation for situation in result.situations if situation.result is not None]
 
             # Transform the details field for each situation and update the list
+            # This may not be necessary but sometimes the returned details field are not transformed
             for i, situation in enumerate(result.situations):
                 result.situations[i] = self.transform_json(situation)
             

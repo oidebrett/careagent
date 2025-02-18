@@ -1,3 +1,7 @@
 data/
 .env
 .vscode/
+__pycache__/
+.venv/
+*.pkl
+.ipynb_checkpoints/

@@ -7,7 +7,7 @@ import time
 from agents.event_parser import EventParser
 
 files = [
-    "/home/ivob/Projects/llm_engineering/careagent/data/daily_routine_data.json"
+    "data/daily_routine_data.json"
     ]
 
 

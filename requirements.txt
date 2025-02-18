@@ -1,0 +1,15 @@
+python-dotenv
+jupyterlab
+huggingface_hub
+transformers
+datasets
+matplotlib
+ipywidgets
+tqdm
+torch
+scikit-learn
+openai
+gradio
+gradio_modal
+sentence_transformers
+plotly

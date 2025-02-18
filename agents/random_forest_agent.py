@@ -95,7 +95,7 @@ class RandomForestAgent(Agent):
         """        
         self.log("Random Forest Agent is starting a prediction")
         result = self.predict_anomaly(self.model, self.scaler, situation)
-        self.log(f"Random Forest Agent completed - predicting ${result['is_anomalous']}")
+        self.log(f"Random Forest Agent completed - prediction is_anomalous:{result['is_anomalous']}")
         if result['is_anomalous']:
             return 'anomalous'
         else:
