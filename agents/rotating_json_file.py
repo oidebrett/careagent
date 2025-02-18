@@ -53,13 +53,13 @@ class RotatingJSONFile:
                 if self.is_jsonl:
                     archive_file.writelines(old_data)
                 else:
-                    json.dump(old_data, archive_file)
+                    json.dump(old_data, archive_file, indent=2)
 
         with open(self.filename, 'w') as file:
             if self.is_jsonl:
                 file.writelines(new_data)
             else:
-                json.dump(new_data, file)
+                json.dump(new_data, file, indent=2)
 
     def read(self):
         """Read the entire file and return as a list of dicts."""
