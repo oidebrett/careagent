@@ -88,7 +88,7 @@ class RotatingJSONFile:
                 for entry in data:
                     file.write(json.dumps(entry) + '\n')
             else:
-                json.dump(data, file)
+                json.dump(data, file, indent=2)
 
     def overwrite(self, data):
         """Overwrite the file with a new list of JSON-compatible dicts."""
@@ -98,7 +98,7 @@ class RotatingJSONFile:
                 for entry in data:
                     file.write(json.dumps(entry) + '\n')
             else:
-                json.dump(data, file)
+                json.dump(data, file, indent=2)
 
     def __enter__(self):
         return self
