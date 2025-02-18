@@ -30,7 +30,7 @@ The Care Agent project is designed to monitor and analyze the daily activities o
 2. **Create a Virtual Environment**
 
     ```bash
-    python -m venv venv
+    python3 -m venv venv
     source venv/bin/activate  # On Windows use `venv\Scripts\activate`
     ```
 
