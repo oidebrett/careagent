@@ -156,7 +156,7 @@ class App:
                 thread.start()
                 
                 for log_data, output, final_result in update_output(initial_log_data, log_queue, result_queue):
-                    yield log_data, output, create_html_table(final_result), get_plot()
+                    yield log_data, output, create_html_table(final_result, "anomalous"), create_html_table(final_result, "normal"), get_plot()
            
 
             def handle_dropdown_change(value):
@@ -180,13 +180,14 @@ class App:
                     self.get_agent_framework().update_memory(index, investigation)
 
                     # Update the table and plot
-                    updated_table = create_html_table(table_for(investigations))
+                    updated_anomalous_table = create_html_table(table_for(investigations), "anomalous")
+                    updated_normal_table = create_html_table(table_for(investigations), "normal")
                     updated_plot = get_plot()
-                    return updated_table, updated_plot
+                    return updated_anomalous_table, updated_normal_table, updated_plot
                 except Exception as e:
-                    return create_html_table(table_for([])), get_plot()
+                    return create_html_table(table_for([]), "anomalous"), create_html_table(table_for([]), "normal"), get_plot()
 
-            def create_html_table(data):
+            def create_html_table(data, estimateToShow="anomalous"):
                 table_html = """
                 <table style="width:100%; border-collapse: collapse;">
                     <thead>
@@ -205,7 +206,7 @@ class App:
                 for idx, row in enumerate(data):
                     estimate = row[6]  # Estimate field
 
-                    if estimate == "anomalous": #only include rows that are not normal                    
+                    if estimate == estimateToShow: #only include rows that match the estimateToShow                    
                         selected_normal = "selected" if estimate == "normal" else ""
                         selected_anomalous = "selected" if estimate == "anomalous" else ""
 
@@ -246,19 +247,24 @@ class App:
                 with gr.Column(scale=1):
                     plot = gr.Plot(value=get_plot(), show_label=False)
 
-            with gr.Row():
-                investigations_html = gr.HTML()
+            with gr.Tab("Anomalous Situations"):
+                with gr.Row():
+                    anomalous_investigations_html = gr.HTML()
+
+            with gr.Tab("Normal Situations"):
+                with gr.Row():
+                    normal_investigations_html = gr.HTML()
+
 
             dropdown_data = gr.Textbox(elem_id="dropdown-data-input", visible=True)
-            #result_text = gr.Textbox(visible=False)
 
             dropdown_data.change(
                 fn=handle_dropdown_change,
                 inputs=[dropdown_data],
-                outputs=[investigations_html, plot]
+                outputs=[anomalous_investigations_html, normal_investigations_html, plot]
             )
 
-            ui.load(run_with_logging, inputs=[log_data], outputs=[log_data, logs, investigations_html, plot])
+            ui.load(run_with_logging, inputs=[log_data], outputs=[log_data, logs, anomalous_investigations_html, normal_investigations_html, plot])
 
             # JavaScript to trigger modal display on row click
             ui.load(
@@ -314,7 +320,7 @@ class App:
             )
 
             timer = gr.Timer(value=30, active=True)
-            timer.tick(run_with_logging, inputs=[log_data], outputs=[log_data, logs, investigations_html, plot])
+            timer.tick(run_with_logging, inputs=[log_data], outputs=[log_data, logs, anomalous_investigations_html, normal_investigations_html, plot])
 
         ui.launch(share=False, inbrowser=True)
 
