@@ -5,7 +5,7 @@ import json
 
 from agents.agent import Agent
 #from agents.specialist_agent import SpecialistAgent
-#from agents.frontier_agent import FrontierAgent
+from agents.frontier_agent import FrontierAgent
 from agents.situations import Situation
 from agents.random_forest_agent import RandomForestAgent
 from agents.tabpfn_agent import TabPFNAgent
@@ -38,7 +38,7 @@ class EnsembleAgent(Agent):
         """
         self.log("Running Ensemble Agent - collaborating with random forest agents")
 #        specialist = self.specialist.price(description)
-#        frontier = self.frontier.price(description)
+#        frontier = self.frontier.estimate(situation)
         random_forest = self.random_forest.estimate(situation)
         tabPFN = self.tabPFN.estimate(situation)
 #        X = pd.DataFrame({
