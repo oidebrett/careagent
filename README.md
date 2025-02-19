@@ -58,6 +58,15 @@ The Care Agent project is designed to monitor and analyze the daily activities o
     python care_agent_ui.py
     ```
 
+6. Playground
+
+If you would like to experiment with various models including local ones you will need to install ollama
+
+    ```bash
+    curl -fsSL https://ollama.com/install.sh | sh
+    ```
+
+
 ## Usage
 
 ### Running the Care Agent

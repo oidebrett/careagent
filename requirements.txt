@@ -13,3 +13,5 @@ gradio
 gradio_modal
 sentence_transformers
 plotly
+anthropic
+tabpfn

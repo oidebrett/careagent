@@ -1,8 +1,10 @@
-data/
+data/*
 !data/memory.json
+!data/all_data.json
 .env
 .vscode/
 __pycache__/
 .venv/
 *.pkl
 .ipynb_checkpoints/
+convert_data.py

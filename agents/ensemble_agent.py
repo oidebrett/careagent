@@ -8,6 +8,7 @@ from agents.agent import Agent
 #from agents.frontier_agent import FrontierAgent
 from agents.situations import Situation
 from agents.random_forest_agent import RandomForestAgent
+from agents.tabpfn_agent import TabPFNAgent
 
 class EnsembleAgent(Agent):
 
@@ -23,6 +24,7 @@ class EnsembleAgent(Agent):
 #        self.specialist = SpecialistAgent()
 #        self.frontier = FrontierAgent(collection)
         self.random_forest = RandomForestAgent()
+        self.tabPFN = TabPFNAgent()
 #        self.model = joblib.load('ensemble_model.pkl')
         self.log("Ensemble Agent is ready")
 
@@ -38,6 +40,7 @@ class EnsembleAgent(Agent):
 #        specialist = self.specialist.price(description)
 #        frontier = self.frontier.price(description)
         random_forest = self.random_forest.estimate(situation)
+        tabPFN = self.tabPFN.estimate(situation)
 #        X = pd.DataFrame({
 #            'Specialist': [specialist],
 #            'Frontier': [frontier],
@@ -46,6 +49,7 @@ class EnsembleAgent(Agent):
 #            'Max': [max(specialist, frontier, random_forest)],
 #        })
 #        y = self.model.predict(X)[0]
-        y = random_forest
+#        y = random_forest
+        y = tabPFN
         self.log(f"Ensemble Agent complete - returning ${y}")
         return y
