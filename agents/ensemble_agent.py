@@ -22,10 +22,9 @@ class EnsembleAgent(Agent):
         """
         self.log("Initializing Ensemble Agent")
 #        self.specialist = SpecialistAgent()
-#        self.frontier = FrontierAgent(collection)
+        self.frontier = FrontierAgent(collection)
         self.random_forest = RandomForestAgent()
         self.tabPFN = TabPFNAgent()
-#        self.model = joblib.load('ensemble_model.pkl')
         self.log("Ensemble Agent is ready")
 
     def estimate(self, situation: Situation) -> float:
@@ -38,18 +37,24 @@ class EnsembleAgent(Agent):
         """
         self.log("Running Ensemble Agent - collaborating with random forest agents")
 #        specialist = self.specialist.price(description)
-#        frontier = self.frontier.estimate(situation)
+        frontier = self.frontier.estimate(situation)
         random_forest = self.random_forest.estimate(situation)
         tabPFN = self.tabPFN.estimate(situation)
-#        X = pd.DataFrame({
-#            'Specialist': [specialist],
-#            'Frontier': [frontier],
-#            'RandomForest': [random_forest],
-#            'Min': [min(specialist, frontier, random_forest)],
-#            'Max': [max(specialist, frontier, random_forest)],
-#        })
-#        y = self.model.predict(X)[0]
-#        y = random_forest
-        y = tabPFN
-        self.log(f"Ensemble Agent complete - returning ${y}")
+
+        # Collect votes
+        votes = [frontier, random_forest, tabPFN]
+
+        # Determine the majority vote
+        normal_votes = votes.count("normal")
+        anomalous_votes = votes.count("anomalous")
+
+        # Return the label with the most votes
+        if normal_votes > anomalous_votes:
+            y = "normal"
+        else:
+            y = "anomalous"
+
+        self.log(f"Ensemble Agent ran a vote - returning {y}")
         return y
+    
+    

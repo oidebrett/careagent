@@ -1,20 +1,6 @@
 [
   {
     "situation": {
-      "situation_description": "The elderly person spent an extended period in the bathroom after previously being in the bedroom. The timestamps show a transition from the bedroom to the bathroom, where the individual remained for an extended time, indicated by the occupancy logs. Although the bathroom usage seems normal, the extended stay might suggest that close monitoring is required to ensure no distress is present during this time.",
-      "result": "anomalous",
-      "start_timestamp": 1738073100,
-      "end_timestamp": 1738073700,
-      "details": [
-        "{\"timestamp\": 1738073100, \"room\": \"bathroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1738073400, \"room\": \"bathroom\", \"nodeId\": 3, \"humidity\": 6500}",
-        "{\"timestamp\": 1738073700, \"room\": \"bathroom\", \"nodeId\": 2, \"onOff\": false}"
-      ]
-    },
-    "estimate": "anomalous"
-  },
-  {
-    "situation": {
       "situation_description": "In a concerning incident, the elderly person was recorded being in the bathroom, which is not a typical location for stationary behavior. The logs show a prolonged presence in the bathroom with occupancy recorded immediately before exiting. This may indicate a potential issue requiring monitoring as bathroom stays can sometimes suggest difficulties or accidents. The bathroom log entries raise concerns about the duration spent in this potentially vulnerable state.",
       "result": "anomalous",
       "start_timestamp": 1738159500,
@@ -222,5 +208,21 @@
       ]
     },
     "estimate": "anomalous"
+  },
+  {
+    "situation": {
+      "situation_description": "The elderly person displayed a concerning pattern of prolonged inactivity following a series of movements. After leaving the bathroom, there was a period of inactivity in the living room that lasted unusually long. The logs indicate that the person was last detected in the living room before a significant gap emerged. This absence of movement, along with the lack of detected occupancy in the living areas, raises concerns regarding the individual's well-being.",
+      "result": "anomalous",
+      "start_timestamp": 1738076400,
+      "end_timestamp": 1738094400,
+      "details": [
+        "{\"timestamp\": 1738076400, \"room\": \"livingroom\", \"nodeId\": 2, \"onOff\": false}",
+        "{\"timestamp\": 1738077600, \"room\": \"hall\", \"nodeId\": 1, \"occupancy\": 1}",
+        "{\"timestamp\": 1738078200, \"room\": \"porch\", \"nodeId\": 1, \"occupancy\": 1}",
+        "{\"timestamp\": 1738078260, \"room\": \"hall\", \"nodeId\": 1, \"occupancy\": 0}",
+        "{\"timestamp\": 1738094400, \"room\": \"porch\", \"nodeId\": 1, \"occupancy\": 1}"
+      ]
+    },
+    "estimate": "normal"
   }
 ]

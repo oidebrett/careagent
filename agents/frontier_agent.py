@@ -6,13 +6,12 @@ import math
 import json
 from typing import List, Dict
 from openai import OpenAI
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer, util
 from datasets import load_dataset
-import chromadb
 from items import Item
 from testing import Tester
 from agents.agent import Agent
-
+from agents.situations import Situation
 
 class FrontierAgent(Agent):
 
@@ -32,7 +31,7 @@ class FrontierAgent(Agent):
         self.model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
         self.log("Frontier Agent is ready")
 
-    def make_context(self, similars: List[str], estimates: List[str]) -> str:
+    def make_context(self, similars: List[str]) -> str:
         """
         Create context that can be inserted into the prompt
         :param similars: similar situations to the one being estimated
@@ -40,11 +39,13 @@ class FrontierAgent(Agent):
         :return: text to insert in the prompt that provides context
         """
         message = "To provide some context, here are some other situations that might be similar to the situations you need to estimate.\n\n"
-        for similar, estimate in zip(similars, estimates):
-            message += f"Potentially related situation:\n{similar}\nEstimate is {estimate}\n\n"
+        for similar in similars:
+            details = json.dumps(similar['situation']['details'])
+            estimate = similar['estimate']
+            message += f"Potentially related situation:\n{details}\nEstimate is {estimate}\n\n"
         return message
 
-    def messages_for(self, description: str, similars: List[str], estimates: List[str]) -> List[Dict[str, str]]:
+    def messages_for(self, situation: Situation, similar_situations: List[Situation]) -> List[Dict[str, str]]:
         """
         Create the message list to be included in a call to OpenAI
         With the system and user prompt
@@ -54,44 +55,72 @@ class FrontierAgent(Agent):
         :return: the list of messages in the format expected by OpenAI
         """
         system_message = "You look for normal and anomalous situations in smart home sensor data in an elderly persons home. Reply only with the word normal or anomalous, no explanation"
-        user_prompt = self.make_context(similars, estimates)
+        user_prompt = self.make_context(similar_situations)
         user_prompt += "And now the situaton for you:\n\n"
-        user_prompt += "How would you classify this sensor data - normal or anomalous?\n\n" + description
+        details = situation.details
+        user_prompt += "How would you classify this sensor data - normal or anomalous?\n\n" + json.dumps(details)
         return [
             {"role": "system", "content": system_message},
             {"role": "user", "content": user_prompt},
             {"role": "assistant", "content": "Result is "}
         ]
 
-    def find_similars(self, description: str):
-        """
-        Return a list of items similar to the given one by looking in the Chroma datastore
-        """
-        self.log("Frontier Agent is performing a RAG search of the Chroma datastore to find 5 similar situations")
-        vector = self.model.encode([description])
-        results = self.collection.query(query_embeddings=vector.astype(float).tolist(), n_results=5)
-        documents = results['documents'][0][:]
-        estimates = [m['estimate'] for m in results['metadatas'][0][:]]
-        self.log("Frontier Agent has found similar estimates")
-        return documents, estimates
 
-    def get_result(text):
+    def load_json_file(self, file_path):
+        if not os.path.exists(file_path):
+                return []
+        with open(file_path, 'r') as f:
+            return json.load(f)
+
+    def vector_search(self, file_path, query, top_k=5):
+        # Load JSON data
+        data = self.load_json_file(file_path)
+
+        # Extract text data to embed and keep track of indices
+        texts = [item['situation']['situation_description'] for item in data]
+
+        # Return an empty list if there are no texts
+        if not texts:
+            return []
+    
+        # Create embeddings for each text
+        embeddings = self.model.encode(texts, convert_to_tensor=True)
+
+        # Create embedding for the query
+        query_embedding = self.model.encode(query, convert_to_tensor=True)
+
+        # Compute cosine similarities
+        similarities = util.pytorch_cos_sim(query_embedding, embeddings)[0]
+
+        # Get the top_k results
+        top_results = similarities.topk(top_k)
+
+        # Return the most similar JSON objects
+        return [data[idx] for idx in top_results.indices.tolist()]
+
+
+    def get_result(self, text):
         # Match "normal" or "anomalous" anywhere in the text
         match = re.search(r"\b(normal|anomalous)\b", text, re.IGNORECASE)
         return match.group(1).lower() if match else None
 
-    def estimate(self, description: str) -> float:
+    def estimate(self, situation: Situation) -> str:  
         """
         Make a call to OpenAI to estimate the normality of the described situation,
         by looking up 5 similar situations and including them in the prompt to give context
         :param description: a description of the situation
         :return: an estimate of the normality or otherwise of the situation
         """
-        documents, estimates = self.find_similars(description)
-        self.log("Frontier Agent is about to call OpenAI with context including 5 similar situations")
+
+        # Example usage:
+        file_path = 'data/memory.json'
+        query = situation.situation_description
+        similar_situations = self.vector_search(file_path, query)
+
+        self.log("Frontier Agent is about to call OpenAI with context including similar situations")
         response = self.openai.chat.completions.create(
             model=self.MODEL, 
-            messages=self.messages_for(description, documents, estimates),
+            messages=self.messages_for(situation, similar_situations),
             seed=42,
             max_tokens=5
         )
