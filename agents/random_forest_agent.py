@@ -31,8 +31,13 @@ class RandomForestAgent(Agent):
         features = {}
         
         # Get all events for this day
-        events = [json.loads(event) for event in data.details]
-
+        if isinstance(data.details, str):
+            events = json.loads(data.details)
+        elif isinstance(data.details, list) and all(isinstance(item, str) for item in data.details):
+            events = [json.loads(event) for event in data.details]
+        else:  
+            events = data.details
+            
         # Get all unique rooms
         unique_rooms = list(set(event['room'] for event in events))
         
@@ -45,15 +50,7 @@ class RandomForestAgent(Agent):
         # Add room counts to features
         for room in ['bedroom', 'bathroom', 'kitchen', 'livingroom', 'pillbox', 'hall', 'porch']:
             features[f'{room}_visits'] = room_counts.get(room, 0)
-        
-        # Feature 2: Count medication events (pillbox interactions)
-        features['medication_counts'] = sum(1 for event in events 
-                                        if event['room'] == 'pillbox' and event['onOff'] == True)
-        
-        # Feature 3: Count fridge openings
-        features['fridge_openings'] = sum(1 for event in events 
-                                        if event.get('event') == 'fridge_opened')
-        
+            
         # Feature 4: Calculate time spans between room transitions
         timestamps = [event['timestamp'] for event in events]
         if len(timestamps) > 1:
@@ -71,7 +68,7 @@ class RandomForestAgent(Agent):
         features['rapid_transitions'] = rapid_transitions
         
         return features
-
+    
     # Function to predict result for a new datapoint
     def predict_anomaly(self, model, scaler, new_data):
         """Predict if a new day's data is anomalous."""

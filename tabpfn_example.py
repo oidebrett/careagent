@@ -149,6 +149,64 @@ def prepare_features(data):
 
     return features
 
+'''
+def prepare_features(data):
+    """Convert the raw sensor data into meaningful features dynamically."""
+    features = {}
+    
+    # Get all events for this day
+    try:
+        events = json.loads(data.details)
+    except json.JSONDecodeError:
+        return features  # Return empty if details are not parseable
+
+    if not events:
+        return features  # No events, return empty features
+
+    # Feature 1: Unique room visits and their counts
+    room_counts = {}  # Count visits per room
+    event_counts = {}  # Count occurrences of each event type
+    timestamps = []  # To track time-based features
+
+    for event in events:
+        room = event.get('room', 'unknown')
+        event_type = event.get('event', 'none')
+        timestamp = event.get('timestamp')
+
+        # Update room and event counts
+        room_counts[room] = room_counts.get(room, 0) + 1
+        event_counts[event_type] = event_counts.get(event_type, 0) + 1
+
+        # Track timestamps for time-based calculations
+        if timestamp is not None:
+            timestamps.append(timestamp)
+
+    # Add dynamic room counts
+    for room, count in room_counts.items():
+        features[f'room_{room}_visits'] = count
+
+    # Add dynamic event counts
+    for event_type, count in event_counts.items():
+        features[f'event_{event_type}_count'] = count
+
+    # Feature 2: Time-based features
+    if len(timestamps) > 1:
+        timestamps.sort()
+        time_diffs = np.diff(timestamps)
+        features['avg_time_between_events'] = np.mean(time_diffs)
+        features['max_time_between_events'] = np.max(time_diffs)
+        features['min_time_between_events'] = np.min(time_diffs)
+        features['num_rapid_transitions'] = sum(diff < 120 for diff in time_diffs)
+    else:
+        # Default values if not enough timestamps
+        features['avg_time_between_events'] = 0
+        features['max_time_between_events'] = 0
+        features['min_time_between_events'] = 0
+        features['num_rapid_transitions'] = 0
+
+    return features
+'''
+
 def prepare_tabular_data(data, feature_names=None):
     """Convert a list of JSON entries into a Pandas DataFrame with engineered features."""
     flattened_data = []

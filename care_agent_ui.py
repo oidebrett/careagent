@@ -73,7 +73,7 @@ class App:
                     if index < len(investigations):
                         details = investigations[index].situation.details
                         # Format details nicely for display
-                        details_str = "\n".join(details)
+                        details_str = "\n".join(json.dumps(detail) for detail in details)
                         print(f"Showing details for index: {index}")
                         return Modal(visible=False), details_str, Modal(visible=True)
                 print("No details to show or invalid index")

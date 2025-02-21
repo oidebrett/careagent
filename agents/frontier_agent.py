@@ -82,7 +82,10 @@ class FrontierAgent(Agent):
         # Return an empty list if there are no texts
         if not texts:
             return []
-    
+        
+        # Ensure top_k does not exceed the number of available texts
+        top_k = min(top_k, len(texts))
+            
         # Create embeddings for each text
         embeddings = self.model.encode(texts, convert_to_tensor=True)
 

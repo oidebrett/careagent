@@ -7,7 +7,7 @@ BASE_MODEL = "meta-llama/Meta-Llama-3.1-8B"
 #BASE_MODEL = "deepseek-ai/DeepSeek-R1"
 
 MIN_TOKENS = 15 # Any less than this, and we don't have enough useful content
-MAX_TOKENS = 1160 # Truncate after this many tokens. Then after adding in prompt text, we will get to around 1180 tokens
+MAX_TOKENS = 2000 # Truncate after this many tokens. Then after adding in prompt text, we will get to around 2200 tokens
 
 MIN_CHARS = 30
 CEILING_CHARS = MAX_TOKENS * 7
@@ -31,7 +31,6 @@ class Item:
 
     def __init__(self, data, result):
         self.result = result
-        data = self.transformJson(data)
         self.parse(data)
 
     def scrub(self, stuff):
@@ -39,32 +38,7 @@ class Item:
         Clean up the provided text by removing unnecessary characters and whitespace
         """
         return stuff
-        
-    def transformJson(self, data):
-        """
-        This function performs the following steps:
-        
-        Iterates over each string in the details list.
-        Replaces single quotes with double quotes.
-        Replaces True/False with true/false.
-        Converts the modified string to a JSON object using json.loads.
-        Collects the valid JSON objects in a list.
-        Converts the list of JSON objects back to a JSON string using json.dumps.
-        """
-        details = data['details']
-        valid_json_details = []
-    
-        for detail in details:
-            # Replace single quotes with double quotes
-            detail = detail.replace("'", '"')
-            # Replace True/False with true/false
-            detail = re.sub(r'\bTrue\b', 'true', detail)
-            detail = re.sub(r'\bFalse\b', 'false', detail)
-            valid_json_details.append(json.loads(detail))
 
-        data['details'] = valid_json_details
-        return data
-        
     def parse(self, data):
         """
         Parse this datapoint and if it fits within the allowed Token range,

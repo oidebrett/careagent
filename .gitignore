@@ -1,6 +1,7 @@
 data/*
 !data/memory.json
 !data/all_data.json
+!data/daily_routine_data.json
 .env
 .vscode/
 __pycache__/

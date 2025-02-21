@@ -7,7 +7,8 @@ import time
 from agents.event_parser import EventParser
 
 files = [
-    "data/daily_routine_data.json"
+#    "data/daily_routine_data_new.json"
+    "/tmp/daily_routine_data.json" # we will use real live data
     ]
 
 
@@ -61,7 +62,7 @@ class Situation(BaseModel):
     result: str
     start_timestamp: int
     end_timestamp: int
-    details: List[str]
+    details: List[dict]
 
 class SituationSelection(BaseModel):
     """

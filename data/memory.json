@@ -1,226 +1,231 @@
 [
   {
     "situation": {
-      "situation_description": "In a concerning incident, the elderly person was recorded being in the bathroom, which is not a typical location for stationary behavior. The logs show a prolonged presence in the bathroom with occupancy recorded immediately before exiting. This may indicate a potential issue requiring monitoring as bathroom stays can sometimes suggest difficulties or accidents. The bathroom log entries raise concerns about the duration spent in this potentially vulnerable state.",
+      "situation_description": "The elderly person's movements in the kitchen exhibited a concerning pattern of contradictory occupancy sensing. Several consecutive entries indicated rapid toggling of occupancy status, where the person was sensed as present and then absent multiple times within short intervals. This unusual behavior may suggest a possible fall or disorientation, as the frequency of occupancy changes is atypical. Continuous monitoring of this pattern is needed to ensure the individual's safety and well-being.",
       "result": "anomalous",
-      "start_timestamp": 1738159500,
-      "end_timestamp": 1738160100,
+      "start_timestamp": 1740090748,
+      "end_timestamp": 1740123322,
       "details": [
-        "{\"timestamp\": 1738159500, \"room\": \"bathroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1738159800, \"room\": \"bathroom\", \"nodeId\": 3, \"humidity\": 6500}",
-        "{\"timestamp\": 1738160100, \"room\": \"bathroom\", \"nodeId\": 2, \"onOff\": false}"
+        {
+          "timestamp": 1740090748,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 3,
+          "attribute": {
+            "OccupancySensing": {
+              "Occupancy": 0
+            }
+          }
+        },
+        {
+          "timestamp": 1740090757,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 3,
+          "attribute": {
+            "OccupancySensing": {
+              "Occupancy": 1
+            }
+          }
+        },
+        {
+          "timestamp": 1740091141,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 3,
+          "attribute": {
+            "OccupancySensing": {
+              "Occupancy": 0
+            }
+          }
+        },
+        {
+          "timestamp": 1740091363,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 3,
+          "attribute": {
+            "OccupancySensing": {
+              "Occupancy": 1
+            }
+          }
+        },
+        {
+          "timestamp": 1740091427,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 3,
+          "attribute": {
+            "OccupancySensing": {
+              "Occupancy": 0
+            }
+          }
+        },
+        {
+          "timestamp": 1740123187,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 3,
+          "attribute": {
+            "OccupancySensing": {
+              "Occupancy": 1
+            }
+          }
+        },
+        {
+          "timestamp": 1740123322,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 3,
+          "attribute": {
+            "OccupancySensing": {
+              "Occupancy": 0
+            }
+          }
+        }
       ]
     },
     "estimate": "anomalous"
   },
   {
     "situation": {
-      "situation_description": "The elderly person displayed a concerning pattern of prolonged inactivity in the bedroom during a key period of the day, specifically after using the pillbox. The logs indicate they were in the bedroom for an extended duration without further activity, raising potential health and safety concerns. This unusual behavior could suggest a need for monitoring or assistance to ensure their wellbeing.",
+      "situation_description": "The logs indicate a concerning pattern of frequent occupancy changes in the kitchen. The person entered and exited the room multiple times within a short period, often showing immediate on-off occupancy signals. This unusual pattern may suggest disorientation or a need for assistance in finding or accessing something, indicating a situation that requires monitoring. The rapid back-and-forth movements may be alarming for ensuring the safety of the elderly individual.",
       "result": "anomalous",
-      "start_timestamp": 1738039200,
-      "end_timestamp": 1738039800,
+      "start_timestamp": 1740121214,
+      "end_timestamp": 1740123327,
       "details": [
-        "{\"timestamp\": 1738039200, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1738039260, \"room\": \"pillbox\", \"nodeId\": 1, \"onOff\": true}",
-        "{\"timestamp\": 1738039800, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": false}"
+        {
+          "timestamp": 1740121214,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 3,
+          "attribute": {
+            "OccupancySensing": {
+              "Occupancy": 1
+            }
+          }
+        },
+        {
+          "timestamp": 1740121283,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 3,
+          "attribute": {
+            "OccupancySensing": {
+              "Occupancy": 0
+            }
+          }
+        },
+        {
+          "timestamp": 1740122292,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 3,
+          "attribute": {
+            "OccupancySensing": {
+              "Occupancy": 1
+            }
+          }
+        },
+        {
+          "timestamp": 1740122353,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 3,
+          "attribute": {
+            "OccupancySensing": {
+              "Occupancy": 0
+            }
+          }
+        },
+        {
+          "timestamp": 1740123187,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 3,
+          "attribute": {
+            "OccupancySensing": {
+              "Occupancy": 1
+            }
+          }
+        },
+        {
+          "timestamp": 1740123322,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 3,
+          "attribute": {
+            "OccupancySensing": {
+              "Occupancy": 0
+            }
+          }
+        },
+        {
+          "timestamp": 1740123327,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 3,
+          "attribute": {
+            "OccupancySensing": {
+              "Occupancy": 1
+            }
+          }
+        }
       ]
     },
     "estimate": "anomalous"
   },
   {
     "situation": {
-      "situation_description": "During the monitoring period, there was a concerning period where the elderly person spent an extended time in the living room without any movement recorded for a significant duration. The log shows the person occupied the living room followed by a lack of activity elsewhere for an unusually long stretch of time. Such inactivity could indicate possible health issues that require attention. Prompt checking could be warranted to ensure the person's well-being during this period.",
+      "situation_description": "During the analysis period, unusual movement was detected in the kitchen area. There was a log entry reporting a temperature measurement, which may indicate the elderly person was present in the kitchen, possibly involving cooking or engaging with the stove. However, the high temperature reading of 1871 suggests possible concerns for the person's safety, particularly regarding potential fire hazards. Continuous monitoring may be necessary to ensure the safety of the elderly individual in such circumstances.",
       "result": "anomalous",
-      "start_timestamp": 1737928800,
-      "end_timestamp": 1737932400,
+      "start_timestamp": 1740128185,
+      "end_timestamp": 1740128185,
       "details": [
-        "{\"timestamp\": 1737928800, \"room\": \"livingroom\", \"nodeId\": 2, \"onOff\": false}",
-        "{\"timestamp\": 1737932400, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": true}"
+        {
+          "timestamp": 1740128185,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 5,
+          "attribute": {
+            "TemperatureMeasurement": {
+              "MeasuredValue": 1871
+            }
+          }
+        }
       ]
     },
-    "estimate": "anomalous"
+    "estimate": "normal"
   },
   {
     "situation": {
-      "situation_description": "The elderly person exhibited an unusual pattern of movements, spending a prolonged time in the bedroom. There was an instance where the bedroom light was turned on, followed by a brief period of activity in the pillbox room. However, the log indicates a prolonged duration without any movements detected or lights being activated in the other rooms leading to potential concerns about the individual's well-being. This situation suggests that further monitoring might be needed due to the inactivity in the living spaces.",
+      "situation_description": "The elderly person logged several entries indicating abnormal temperature and humidity measurements in the kitchen. The temperature was recorded at an extreme level of 1904, which is not typical and suggests a malfunction or serious environmental issue. Additionally, the humidity level was extraordinarily high at 6295, indicating a concerning abnormal state. This unusual combination of measurements raises significant concerns regarding the person's well-being and the environmental safety in the kitchen area.",
       "result": "anomalous",
-      "start_timestamp": 1738254600,
-      "end_timestamp": 1738255900,
+      "start_timestamp": 1740151750,
+      "end_timestamp": 1740151751,
       "details": [
-        "{\"timestamp\": 1738245600, \"room\": \"pillbox\", \"nodeId\": 1, \"onOff\": true}",
-        "{\"timestamp\": 1738245660, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1738245900, \"room\": \"bathroom\", \"nodeId\": 2, \"onOff\": true}"
-      ]
-    },
-    "estimate": "anomalous"
-  },
-  {
-    "situation": {
-      "situation_description": "The elderly person exhibited an unusual pattern of movements, spending a prolonged time in the bedroom. There was an instance where the bedroom light was turned on, followed by a brief period of activity in the pillbox room. However, the log indicates a prolonged duration without any movements detected or lights being activated in the other rooms leading to potential concerns about the individual's well-being. This situation suggests that further monitoring might be warranted due to the inactivity in the living spaces.",
-      "result": "anomalous",
-      "start_timestamp": 1738254600,
-      "end_timestamp": 1738255900,
-      "details": [
-        "{\"timestamp\": 1738245600, \"room\": \"pillbox\", \"nodeId\": 1, \"onOff\": true}",
-        "{\"timestamp\": 1738245660, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1738245900, \"room\": \"bathroom\", \"nodeId\": 2, \"onOff\": true}"
-      ]
-    },
-    "estimate": "anomalous"
-  },
-  {
-    "situation": {
-      "situation_description": "The elderly person exhibited an unusual pattern of movements, spending over an hour without leaving the livingroom after returning from the bathroom. During this time, activity in the kitchen was noted with the fridge being opened multiple times. The lack of movement outside of the livingroom for an extended duration raises potential concerns about the person\u2019s mobility and overall wellbeing.",
-      "result": "anomalous",
-      "start_timestamp": 1738245600,
-      "end_timestamp": 1738245900,
-      "details": [
-        "{\"timestamp\": 1738245600, \"room\": \"pillbox\", \"nodeId\": 1, \"onOff\": true}",
-        "{\"timestamp\": 1738245660, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1738245900, \"room\": \"bathroom\", \"nodeId\": 2, \"onOff\": true}"
-      ]
-    },
-    "estimate": "anomalous"
-  },
-  {
-    "situation": {
-      "situation_description": "The elderly person exhibited unusual movement patterns between the bedroom and common areas during a specific timeframe. While they were active in their living room and kitchen, there were extended periods where they were not detected in any of the monitored areas. This lack of movement can be concerning, especially when it continues for a significant duration without any entry logs indicating activity, thereby highlighting potential issues with mobility or cognitive function.",
-      "result": "anomalous",
-      "start_timestamp": 1738212000,
-      "end_timestamp": 1738212600,
-      "details": [
-        "{\"timestamp\": 1738212000, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1738212060, \"room\": \"pillbox\", \"nodeId\": 1, \"onOff\": true}",
-        "{\"timestamp\": 1738212600, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": false}"
-      ]
-    },
-    "estimate": "anomalous"
-  },
-  {
-    "situation": {
-      "situation_description": "There is a concerning pattern of prolonged activity in the bedroom without subsequent activity in adjacent areas. The elderly person is observed frequenting the bedroom, with multiple entries indicating occupancy, yet there are extensive gaps where no movement is recorded. This could imply a lack of mobility or difficulty in moving to other areas of the home. Monitoring might be necessary to ensure the individual's safety and well-being.",
-      "result": "anomalous",
-      "start_timestamp": 1737952800,
-      "end_timestamp": 1737953400,
-      "details": [
-        "{\"timestamp\": 1737952800, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1737952860, \"room\": \"pillbox\", \"nodeId\": 1, \"onOff\": true}",
-        "{\"timestamp\": 1737953400, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": false}"
-      ]
-    },
-    "estimate": "anomalous"
-  },
-  {
-    "situation": {
-      "situation_description": "The elderly person exhibited a concerning pattern of movement. They spent an unusually long time in the kitchen, repeatedly interacting with the fridge without leaving the room. A gap occurs after exiting the kitchen where there are no entries for over two hours. This extended period of inactivity might indicate a potential issue requiring intervention.",
-      "result": "anomalous",
-      "start_timestamp": 1738202400,
-      "end_timestamp": 1738202460,
-      "details": [
-        "{\"timestamp\": 1738202400, \"room\": \"kitchen\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1738202460, \"room\": \"kitchen\", \"event\": \"fridge_opened\"}"
-      ]
-    },
-    "estimate": "anomalous"
-  },
-  {
-    "situation": {
-      "situation_description": "The individual exhibited an alarming pattern of extended inactivity in the kitchen and bedroom without any log entries indicating movement or use of monitored devices. The kitchen was occupied for an extended time, suggesting possible difficulty. Additionally, prolonged delays between entries could indicate a lack of actions that signal normal daily routines. This situation may require immediate monitoring to ensure the elderly person's well-being.",
-      "result": "anomalous",
-      "start_timestamp": 1738009200,
-      "end_timestamp": 1738029600,
-      "details": [
-        "{\"timestamp\": 1738009200, \"room\": \"kitchen\", \"nodeId\": 2, \"onOff\": false}",
-        "{\"timestamp\": 1738011600, \"room\": \"livingroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1738015200, \"room\": \"livingroom\", \"nodeId\": 2, \"onOff\": false}",
-        "{\"timestamp\": 1738018800, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1738018860, \"room\": \"pillbox\", \"nodeId\": 1, \"onOff\": true}",
-        "{\"timestamp\": 1738019400, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": false}",
-        "{\"timestamp\": 1738029600, \"room\": \"kitchen\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1738029660, \"room\": \"kitchen\", \"event\": \"fridge_opened\"}"
-      ]
-    },
-    "estimate": "anomalous"
-  },
-  {
-    "situation": {
-      "situation_description": "During the observed log entries, there is a concerning pattern of movement where the elderly person is frequently moving between the kitchen and bedroom but has prolonged periods of inactivity. Notably, at 1738105200, the person entered the bedroom and then at 1738105800, the room status indicates they were still inactive after previously having exited the living room. This may suggest a potential issue such as confusion or difficulty moving, which warrants further monitoring.",
-      "result": "anomalous",
-      "start_timestamp": 1738105200,
-      "end_timestamp": 1738105800,
-      "details": [
-        "{\"timestamp\": 1738105200, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1738105260, \"room\": \"pillbox\", \"nodeId\": 1, \"onOff\": true}",
-        "{\"timestamp\": 1738105800, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": false}"
-      ]
-    },
-    "estimate": "anomalous"
-  },
-  {
-    "situation": {
-      "situation_description": "The elderly person exhibited concerning movement patterns when they entered the kitchen but did not appear to activate anything. They then moved to the living room and were noted as occupied. However, after a short period of time, they left the living room without activating any additional devices, and later entered the bedroom where they also switched off movement sensors, indicating a lack of activity. This sequence suggests a sudden lack of engagement in their environment, which may require further monitoring.",
-      "result": "anomalous",
-      "start_timestamp": 1738117200,
-      "end_timestamp": 1738126200,
-      "details": [
-        "{\"timestamp\": 1738117200, \"room\": \"kitchen\", \"nodeId\": 2, \"onOff\": false}",
-        "{\"timestamp\": 1738118400, \"room\": \"livingroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1738118460, \"room\": \"livingroom\", \"nodeId\": 1, \"occupancy\": 1}",
-        "{\"timestamp\": 1738122000, \"room\": \"livingroom\", \"nodeId\": 2, \"onOff\": false}",
-        "{\"timestamp\": 1738125600, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1738125660, \"room\": \"pillbox\", \"nodeId\": 1, \"onOff\": true}",
-        "{\"timestamp\": 1738126200, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": false}"
-      ]
-    },
-    "estimate": "anomalous"
-  },
-  {
-    "situation": {
-      "situation_description": "The elderly person displayed a concerning pattern of prolonged inactivity following a series of movements. After moving through various rooms, including the bathroom and kitchen, they became inactive in the living room. A significant gap in movement occurred as indicated by the occupancy status in the hall and porch, suggesting they may have encountered difficulties. The time frame between the last recorded activity in the hall and the subsequent occupancy in the porch is noteworthy and may be indicative of potential health issues or incapacitation.",
-      "result": "anomalous",
-      "start_timestamp": 1737991860,
-      "end_timestamp": 1738008000,
-      "details": [
-        "{\"timestamp\": 1737991200, \"room\": \"hall\", \"nodeId\": 1, \"occupancy\": 1}",
-        "{\"timestamp\": 1737991800, \"room\": \"porch\", \"nodeId\": 1, \"occupancy\": 1}",
-        "{\"timestamp\": 1737991860, \"room\": \"hall\", \"nodeId\": 1, \"occupancy\": 0}",
-        "{\"timestamp\": 1738008000, \"room\": \"porch\", \"nodeId\": 1, \"occupancy\": 1}"
-      ]
-    },
-    "estimate": "anomalous"
-  },
-  {
-    "situation": {
-      "situation_description": "The elderly person displayed a concerning movement pattern when they spent an extended time in the bathroom from the onset of activity around the pillbox to the final movement recorded in the kitchen. This sequence indicates difficulty in transitioning from one room to another, particularly from the bathroom back to living space. The absence of logs indicating movement out of the bathroom suggests possible distress or a need for assistance. The overall absence of typical movement during this time raises significant concern.",
-      "result": "anomalous",
-      "start_timestamp": 1737900000,
-      "end_timestamp": 1737902400,
-      "details": [
-        "{\"timestamp\": 1737900000, \"room\": \"pillbox\", \"nodeId\": 1, \"onOff\": true}",
-        "{\"timestamp\": 1737900060, \"room\": \"bedroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1737900300, \"room\": \"bathroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1737900600, \"room\": \"bathroom\", \"nodeId\": 3, \"humidity\": 6500}",
-        "{\"timestamp\": 1737900900, \"room\": \"bathroom\", \"nodeId\": 2, \"onOff\": false}",
-        "{\"timestamp\": 1737901200, \"room\": \"kitchen\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1737901800, \"room\": \"kitchen\", \"nodeId\": 2, \"onOff\": false}",
-        "{\"timestamp\": 1737902100, \"room\": \"livingroom\", \"nodeId\": 2, \"onOff\": true}",
-        "{\"timestamp\": 1737902400, \"room\": \"livingroom\", \"nodeId\": 1, \"occupancy\": 1}"
-      ]
-    },
-    "estimate": "anomalous"
-  },
-  {
-    "situation": {
-      "situation_description": "The elderly person displayed a concerning pattern of prolonged inactivity following a series of movements. After leaving the bathroom, there was a period of inactivity in the living room that lasted unusually long. The logs indicate that the person was last detected in the living room before a significant gap emerged. This absence of movement, along with the lack of detected occupancy in the living areas, raises concerns regarding the individual's well-being.",
-      "result": "anomalous",
-      "start_timestamp": 1738076400,
-      "end_timestamp": 1738094400,
-      "details": [
-        "{\"timestamp\": 1738076400, \"room\": \"livingroom\", \"nodeId\": 2, \"onOff\": false}",
-        "{\"timestamp\": 1738077600, \"room\": \"hall\", \"nodeId\": 1, \"occupancy\": 1}",
-        "{\"timestamp\": 1738078200, \"room\": \"porch\", \"nodeId\": 1, \"occupancy\": 1}",
-        "{\"timestamp\": 1738078260, \"room\": \"hall\", \"nodeId\": 1, \"occupancy\": 0}",
-        "{\"timestamp\": 1738094400, \"room\": \"porch\", \"nodeId\": 1, \"occupancy\": 1}"
+        {
+          "timestamp": 1740151750,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 5,
+          "attribute": {
+            "TemperatureMeasurement": {
+              "MeasuredValue": 1904
+            }
+          }
+        },
+        {
+          "timestamp": 1740151751,
+          "room": "kitchen",
+          "nodeId": 6,
+          "endpointId": 6,
+          "attribute": {
+            "RelativeHumidityMeasurement": {
+              "MeasuredValue": 6295
+            }
+          }
+        }
       ]
     },
     "estimate": "normal"
