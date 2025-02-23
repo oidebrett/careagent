@@ -62,7 +62,7 @@ class Situation(BaseModel):
     result: str
     start_timestamp: int
     end_timestamp: int
-    details: List[dict]
+    details: List[str]
 
 class SituationSelection(BaseModel):
     """

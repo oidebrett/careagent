@@ -86,15 +86,15 @@ class RotatingJSONFile:
         with open(self.filename, 'a') as file:
             if self.is_jsonl:
                 for entry in data:
-                    # Ensure details are written as JSON objects
+                    # Ensure details are written as JSON strings
                     if 'situation' in entry and 'details' in entry['situation']:
-                        entry['situation']['details'] = [json.loads(detail) if isinstance(detail, str) else detail for detail in entry['situation']['details']]
+                        entry['situation']['details'] = [json.dumps(detail) if isinstance(detail, dict) else detail for detail in entry['situation']['details']]
                     file.write(json.dumps(entry) + '\n')
             else:
                 for entry in data:
-                    # Ensure details are written as JSON objects
+                    # Ensure details are written as JSON strings
                     if 'situation' in entry and 'details' in entry['situation']:
-                        entry['situation']['details'] = [json.loads(detail) if isinstance(detail, str) else detail for detail in entry['situation']['details']]
+                        entry['situation']['details'] = [json.dumps(detail) if isinstance(detail, dict) else detail for detail in entry['situation']['details']]
                 json.dump(data, file)
 
     def overwrite(self, data):
@@ -103,15 +103,15 @@ class RotatingJSONFile:
         with open(self.filename, 'w') as file:
             if self.is_jsonl:
                 for entry in data:
-                    # Ensure details are written as JSON objects
+                    # Ensure details are written as JSON strings
                     if 'situation' in entry and 'details' in entry['situation']:
-                        entry['situation']['details'] = [json.loads(detail) if isinstance(detail, str) else detail for detail in entry['situation']['details']]
+                        entry['situation']['details'] = [json.dumps(detail) if isinstance(detail, dict) else detail for detail in entry['situation']['details']]
                     file.write(json.dumps(entry) + '\n')
             else:
                 for entry in data:
-                    # Ensure details are written as JSON objects
+                    # Ensure details are written as JSON strings
                     if 'situation' in entry and 'details' in entry['situation']:
-                        entry['situation']['details'] = [json.loads(detail) if isinstance(detail, str) else detail for detail in entry['situation']['details']]
+                        entry['situation']['details'] = [json.dumps(detail) if isinstance(detail, dict) else detail for detail in entry['situation']['details']]
                 json.dump(data, file, indent=2)
 
     def __enter__(self):

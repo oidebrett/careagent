@@ -1,231 +1,158 @@
 [
   {
     "situation": {
-      "situation_description": "The elderly person's movements in the kitchen exhibited a concerning pattern of contradictory occupancy sensing. Several consecutive entries indicated rapid toggling of occupancy status, where the person was sensed as present and then absent multiple times within short intervals. This unusual behavior may suggest a possible fall or disorientation, as the frequency of occupancy changes is atypical. Continuous monitoring of this pattern is needed to ensure the individual's safety and well-being.",
+      "situation_description": "There were multiple instances of the elderly person moving in and out of the kitchen over a short period, with fluctuations in occupancy detected sporadically. This pattern suggests potential disorientation or instability in their movements, as evidenced by the frequent changes in occupancy detected at close intervals. Such behavior may raise concerns about the person's safety and well-being, necessitating further observation or assistance. The elderly individual was observed both entering and leaving the kitchen repeatedly during this time frame.",
       "result": "anomalous",
-      "start_timestamp": 1740090748,
-      "end_timestamp": 1740123322,
+      "start_timestamp": 1740121283,
+      "end_timestamp": 1740122292,
       "details": [
-        {
-          "timestamp": 1740090748,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 3,
-          "attribute": {
-            "OccupancySensing": {
-              "Occupancy": 0
-            }
-          }
-        },
-        {
-          "timestamp": 1740090757,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 3,
-          "attribute": {
-            "OccupancySensing": {
-              "Occupancy": 1
-            }
-          }
-        },
-        {
-          "timestamp": 1740091141,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 3,
-          "attribute": {
-            "OccupancySensing": {
-              "Occupancy": 0
-            }
-          }
-        },
-        {
-          "timestamp": 1740091363,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 3,
-          "attribute": {
-            "OccupancySensing": {
-              "Occupancy": 1
-            }
-          }
-        },
-        {
-          "timestamp": 1740091427,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 3,
-          "attribute": {
-            "OccupancySensing": {
-              "Occupancy": 0
-            }
-          }
-        },
-        {
-          "timestamp": 1740123187,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 3,
-          "attribute": {
-            "OccupancySensing": {
-              "Occupancy": 1
-            }
-          }
-        },
-        {
-          "timestamp": 1740123322,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 3,
-          "attribute": {
-            "OccupancySensing": {
-              "Occupancy": 0
-            }
-          }
-        }
-      ]
-    },
-    "estimate": "anomalous"
-  },
-  {
-    "situation": {
-      "situation_description": "The logs indicate a concerning pattern of frequent occupancy changes in the kitchen. The person entered and exited the room multiple times within a short period, often showing immediate on-off occupancy signals. This unusual pattern may suggest disorientation or a need for assistance in finding or accessing something, indicating a situation that requires monitoring. The rapid back-and-forth movements may be alarming for ensuring the safety of the elderly individual.",
-      "result": "anomalous",
-      "start_timestamp": 1740121214,
-      "end_timestamp": 1740123327,
-      "details": [
-        {
-          "timestamp": 1740121214,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 3,
-          "attribute": {
-            "OccupancySensing": {
-              "Occupancy": 1
-            }
-          }
-        },
-        {
-          "timestamp": 1740121283,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 3,
-          "attribute": {
-            "OccupancySensing": {
-              "Occupancy": 0
-            }
-          }
-        },
-        {
-          "timestamp": 1740122292,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 3,
-          "attribute": {
-            "OccupancySensing": {
-              "Occupancy": 1
-            }
-          }
-        },
-        {
-          "timestamp": 1740122353,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 3,
-          "attribute": {
-            "OccupancySensing": {
-              "Occupancy": 0
-            }
-          }
-        },
-        {
-          "timestamp": 1740123187,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 3,
-          "attribute": {
-            "OccupancySensing": {
-              "Occupancy": 1
-            }
-          }
-        },
-        {
-          "timestamp": 1740123322,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 3,
-          "attribute": {
-            "OccupancySensing": {
-              "Occupancy": 0
-            }
-          }
-        },
-        {
-          "timestamp": 1740123327,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 3,
-          "attribute": {
-            "OccupancySensing": {
-              "Occupancy": 1
-            }
-          }
-        }
-      ]
-    },
-    "estimate": "anomalous"
-  },
-  {
-    "situation": {
-      "situation_description": "During the analysis period, unusual movement was detected in the kitchen area. There was a log entry reporting a temperature measurement, which may indicate the elderly person was present in the kitchen, possibly involving cooking or engaging with the stove. However, the high temperature reading of 1871 suggests possible concerns for the person's safety, particularly regarding potential fire hazards. Continuous monitoring may be necessary to ensure the safety of the elderly individual in such circumstances.",
-      "result": "anomalous",
-      "start_timestamp": 1740128185,
-      "end_timestamp": 1740128185,
-      "details": [
-        {
-          "timestamp": 1740128185,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 5,
-          "attribute": {
-            "TemperatureMeasurement": {
-              "MeasuredValue": 1871
-            }
-          }
-        }
+        "{\"timestamp\": 1740121283, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740122292, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}"
       ]
     },
     "estimate": "normal"
   },
   {
     "situation": {
-      "situation_description": "The elderly person logged several entries indicating abnormal temperature and humidity measurements in the kitchen. The temperature was recorded at an extreme level of 1904, which is not typical and suggests a malfunction or serious environmental issue. Additionally, the humidity level was extraordinarily high at 6295, indicating a concerning abnormal state. This unusual combination of measurements raises significant concerns regarding the person's well-being and the environmental safety in the kitchen area.",
+      "situation_description": "The elderly person exhibited concerning movement patterns, indicated by frequent occupancy changes in the kitchen combined with fluctuating temperature and humidity levels. The logs show repeated occupancy sensing activity with quick transitions between occupied and unoccupied states, which may suggest erratic behavior or disorientation. This pattern, along with increasing humidity measurements and unstable temperature readings, raises potential concerns about the individual's wellbeing and safety in their environment.",
+      "result": "anomalous",
+      "start_timestamp": 1740090748,
+      "end_timestamp": 1740092174,
+      "details": [
+        "{\"timestamp\": 1740090748, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740090757, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740091141, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740091363, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740091427, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740092174, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1924}}}"
+      ]
+    },
+    "estimate": "anomalous"
+  },
+  {
+    "situation": {
+      "situation_description": "The elderly person displayed a concerning pattern of sporadic movement within the kitchen over a significant period. They frequently went in and out of the kitchen, with rapid transitions between occupancy sensor readings showing high levels of movement followed by long periods of vacancy. This erratic behavior may indicate confusion or disorientation. Such patterns of movement warrant close monitoring to ensure their safety.",
       "result": "anomalous",
       "start_timestamp": 1740151750,
-      "end_timestamp": 1740151751,
+      "end_timestamp": 1740176958,
       "details": [
-        {
-          "timestamp": 1740151750,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 5,
-          "attribute": {
-            "TemperatureMeasurement": {
-              "MeasuredValue": 1904
-            }
-          }
-        },
-        {
-          "timestamp": 1740151751,
-          "room": "kitchen",
-          "nodeId": 6,
-          "endpointId": 6,
-          "attribute": {
-            "RelativeHumidityMeasurement": {
-              "MeasuredValue": 6295
-            }
-          }
-        }
+        "{\"timestamp\": 1740151750, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1904}}}",
+        "{\"timestamp\": 1740151751, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 6295}}}",
+        "{\"timestamp\": 1740152598, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740152661, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740152733, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740152811, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740153104, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740155350, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1929}}}",
+        "{\"timestamp\": 1740155351, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 6312}}}",
+        "{\"timestamp\": 1740155609, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740158951, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1909}}}",
+        "{\"timestamp\": 1740158953, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 6284}}}",
+        "{\"timestamp\": 1740161231, \"room\": \"kitchen\", \"nodeId\": 5, \"endpointId\": 0, \"attribute\": {\"GeneralDiagnostics\": {\"UpTime\": 112606}}}",
+        "{\"timestamp\": 1740161232, \"room\": \"kitchen\", \"nodeId\": 5, \"endpointId\": 0, \"attribute\": {\"WiFiNetworkDiagnostics\": {\"Rssi\": -56}}}",
+        "{\"timestamp\": 1740161232, \"room\": \"kitchen\", \"nodeId\": 5, \"endpointId\": 0, \"attribute\": {\"GeneralDiagnostics\": {\"TotalOperationalHours\": 31}}}",
+        "{\"timestamp\": 1740161260, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740162605, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1908}}}",
+        "{\"timestamp\": 1740162606, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740163518, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740163762, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 0, \"attribute\": {\"EthernetNetworkDiagnostics\": {\"TimeSinceReset\": 116754}}}",
+        "{\"timestamp\": 1740166153, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1887}}}",
+        "{\"timestamp\": 1740169754, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1871}}}",
+        "{\"timestamp\": 1740173356, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1859}}}",
+        "{\"timestamp\": 1740173492, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740176958, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 6220}}}"
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "Throughout this timeframe, a concerning pattern of occupancy in the kitchen was noted. The elderly person showed multiple instances of entering and exiting the kitchen very rapidly, often within mere seconds, indicating potential disorientation or confusion. This pattern of erratic movement can be alarming, especially in an elderly individual, as it may suggest a need for monitoring to ensure their safety and well-being. The fluctuation from occupancy to non-occupancy in quick succession raises concerns about their ability to navigate within their home comfortably.",
+      "result": "anomalous",
+      "start_timestamp": 1740130148,
+      "end_timestamp": 1740136814,
+      "details": [
+        "{\"timestamp\": 1740130148, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740130242, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740131360, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740131785, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740131984, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740133217, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740133221, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740134576, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740134989, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740136350, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740136814, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}"
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "The elderly person was observed entering and exiting the kitchen multiple times within a short span. There was a pattern of occupancy where the individual was present, then absent, and then present again repeatedly. This behavior suggests potential confusion or uncertainty, which could be concerning. Such frequent movement may indicate a need for closer monitoring of the individual's activity levels and cognitive state.",
+      "result": "anomalous",
+      "start_timestamp": 1740173492,
+      "end_timestamp": 1740176958,
+      "details": [
+        "{\"timestamp\": 1740173492, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740173590, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740173668, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740173727, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740174189, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740174863, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740174917, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740176957, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1865}}}",
+        "{\"timestamp\": 1740176958, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 6220}}}"
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "There is a concerning lack of occupancy detected in the kitchen over a significant period. The logs indicate that the occupancy sensor reported no presence in the kitchen, which could suggest that the elderly person is either not using this space or possibly facing difficulties in movement. The temperature readings also show a potential issue with the environment that might not be conducive for an elderly person. This situation may warrant further monitoring to ensure safety.",
+      "result": "anomalous",
+      "start_timestamp": 1740231707,
+      "end_timestamp": 1740232631,
+      "details": [
+        "{\"timestamp\": 1740231707, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740231707, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1633}}}",
+        "{\"timestamp\": 1740232631, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1684}}}"
+      ]
+    },
+    "estimate": "anomalous"
+  },
+  {
+    "situation": {
+      "situation_description": "There was an unusual increase in relative humidity detected in the kitchen, which can indicate potential cooking activities that may not be typical for the elderly person living alone. This might also suggest a potential hazard if left unchecked, especially if it leads to mold growth or safety risks associated with cooking. The single log entry indicates a measurement that is likely out of the ordinary for normal living conditions.",
+      "result": "anomalous",
+      "start_timestamp": 1740256179,
+      "end_timestamp": 1740256179,
+      "details": [
+        "{\"timestamp\": 1740256179, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 6143}}}"
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "Throughout the logged period, only a single entry was recorded in the kitchen. The unusual lack of movement suggests a potentially concerning situation as one would expect more frequent activity from an elderly person in their home environment. This may indicate that the individual is not engaging in regular daily activities such as meals or other routines. Close monitoring may be warranted given the absence of diverse sensor outputs.",
+      "result": "anomalous",
+      "start_timestamp": 1740277785,
+      "end_timestamp": 1740277785,
+      "details": [
+        "{\"timestamp\": 1740277785, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 6007}}}"
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "Throughout the logged period, only a single entry was recorded showing humidity measurements in the kitchen. The lack of any other movement or activity logs raises concerns about the elderly person's movements and health status, suggesting minimal activity and potentially indicating a lack of normal daily routines.",
+      "result": "anomalous",
+      "start_timestamp": 1740299392,
+      "end_timestamp": 1740299392,
+      "details": [
+        "{\"timestamp\": 1740299392, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5952}}}"
       ]
     },
     "estimate": "normal"
