@@ -30,56 +30,65 @@ class TabPFNAgent(Agent):
         """Convert the raw sensor data into meaningful features dynamically."""
         features = {}
         
-        # Get all events for this day
-        try:
+        # Load events from data.details (which could be a JSON string, list of JSON strings, or list of dicts)
+        if isinstance(data.details, str):
+            events = json.loads(data.details)
+        elif isinstance(data.details, list) and all(isinstance(item, str) for item in data.details):
             events = [json.loads(event) for event in data.details]
-        except json.JSONDecodeError:
-            return features  # Return empty if details are not parseable
+        else:  
+            events = data.details
 
-        if not events:
-            return features  # No events, return empty features
-
-        # Feature 1: Unique room visits and their counts
-        room_counts = {}  # Count visits per room
-        event_counts = {}  # Count occurrences of each event type
-        timestamps = []  # To track time-based features
-
+        # Dynamic room counts: count visits for every room seen in the events
+        room_counts = {}
         for event in events:
-            room = event.get('room', 'unknown')
-            event_type = event.get('event', 'none')
-            timestamp = event.get('timestamp')
-
-            # Update room and event counts
-            room_counts[room] = room_counts.get(room, 0) + 1
-            event_counts[event_type] = event_counts.get(event_type, 0) + 1
-
-            # Track timestamps for time-based calculations
-            if timestamp is not None:
-                timestamps.append(timestamp)
-
-        # Add dynamic room counts
+            room = event.get('room')
+            if room is not None:
+                room_counts[room] = room_counts.get(room, 0) + 1
+        # Add dynamic room count features (keys will be like 'room_kitchen_visits', etc.)
         for room, count in room_counts.items():
             features[f'room_{room}_visits'] = count
 
-        # Add dynamic event counts
-        for event_type, count in event_counts.items():
-            features[f'event_{event_type}_count'] = count
-
-        # Feature 2: Time-based features
+        # Timestamp based features:
+        # Calculate average and maximum time between consecutive events
+        timestamps = [event.get('timestamp') for event in events if 'timestamp' in event]
         if len(timestamps) > 1:
-            timestamps.sort()
-            time_diffs = np.diff(timestamps)
-            features['avg_time_between_events'] = np.mean(time_diffs)
-            features['max_time_between_events'] = np.max(time_diffs)
-            features['min_time_between_events'] = np.min(time_diffs)
-            features['num_rapid_transitions'] = sum(diff < 120 for diff in time_diffs)
+            diffs = np.diff(timestamps)
+            features['avg_time_between_events'] = float(np.mean(diffs))
+            features['max_time_between_events'] = float(np.max(diffs))
         else:
-            # Default values if not enough timestamps
-            features['avg_time_between_events'] = 0
-            features['max_time_between_events'] = 0
-            features['min_time_between_events'] = 0
-            features['num_rapid_transitions'] = 0
+            features['avg_time_between_events'] = 0.0
+            features['max_time_between_events'] = 0.0
+        
+        # Count rapid transitions (events less than 2 minutes apart)
+        rapid_transitions = 0
+        for i in range(len(timestamps) - 1):
+            if timestamps[i+1] - timestamps[i] < 120:
+                rapid_transitions += 1
+        features['rapid_transitions'] = rapid_transitions
 
+        # Attribute features:
+        # For each attribute present, create a feature (e.g., "TemperatureMeasurement_MeasuredValue")
+        # and aggregate by taking the average value for that attribute over the period.
+        attr_values = {}  # key: feature name, value: list of measurements
+        for event in events:
+            attr = event.get('attribute', {})
+            # Each event's attribute is assumed to be a dict with a single key
+            for attr_name, inner in attr.items():
+                # inner is a dict (e.g., {"MeasuredValue": 1901} or {"Occupancy": 1})
+                for inner_key, value in inner.items():
+                    feature_key = f"{attr_name}_{inner_key}"
+                    try:
+                        numeric_value = float(value)
+                    except (ValueError, TypeError):
+                        continue
+                    if feature_key not in attr_values:
+                        attr_values[feature_key] = []
+                    attr_values[feature_key].append(numeric_value)
+        
+        # Compute the average for each attribute feature if available
+        for key, values in attr_values.items():
+            features[key] = float(np.mean(values))
+        
         return features
 
     def prepare_tabular_data(self, data, feature_names=None):

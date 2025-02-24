@@ -23,57 +23,81 @@ class RandomForestAgent(Agent):
         and the SentenceTransformer vector encoding model
         """
         self.log("Random Forest Agent is initializing")
-        (self.model, self.scaler) = joblib.load('random_forest_model.pkl')
+        (self.model, self.scaler, self.vec) = joblib.load('random_forest_model.pkl')
         self.log("Random Forest Agent is ready")
 
     def prepare_features(self, data):
-        """Convert the raw sensor data into meaningful features."""
+        """Convert the raw sensor data into meaningful features dynamically."""
         features = {}
         
-        # Get all events for this day
+        # Load events from data.details (which could be a JSON string, list of JSON strings, or list of dicts)
         if isinstance(data.details, str):
             events = json.loads(data.details)
         elif isinstance(data.details, list) and all(isinstance(item, str) for item in data.details):
             events = [json.loads(event) for event in data.details]
         else:  
             events = data.details
-            
-        # Get all unique rooms
-        unique_rooms = list(set(event['room'] for event in events))
-        
-        # Feature 1: Count events per room
+
+        # Dynamic room counts: count visits for every room seen in the events
         room_counts = {}
         for event in events:
-            room = event['room']
-            room_counts[room] = room_counts.get(room, 0) + 1
-        
-        # Add room counts to features
-        for room in ['bedroom', 'bathroom', 'kitchen', 'livingroom', 'pillbox', 'hall', 'porch']:
-            features[f'{room}_visits'] = room_counts.get(room, 0)
-            
-        # Feature 4: Calculate time spans between room transitions
-        timestamps = [event['timestamp'] for event in events]
+            room = event.get('room')
+            if room is not None:
+                room_counts[room] = room_counts.get(room, 0) + 1
+        # Add dynamic room count features (keys will be like 'room_kitchen_visits', etc.)
+        for room, count in room_counts.items():
+            features[f'room_{room}_visits'] = count
+
+        # Timestamp based features:
+        # Calculate average and maximum time between consecutive events
+        timestamps = [event.get('timestamp') for event in events if 'timestamp' in event]
         if len(timestamps) > 1:
-            features['avg_time_between_events'] = np.mean(np.diff(timestamps))
-            features['max_time_between_events'] = np.max(np.diff(timestamps))
+            diffs = np.diff(timestamps)
+            features['avg_time_between_events'] = float(np.mean(diffs))
+            features['max_time_between_events'] = float(np.max(diffs))
         else:
-            features['avg_time_between_events'] = 0
-            features['max_time_between_events'] = 0
+            features['avg_time_between_events'] = 0.0
+            features['max_time_between_events'] = 0.0
         
-        # Feature 5: Count rapid room transitions (less than 2 minutes apart)
+        # Count rapid transitions (events less than 2 minutes apart)
         rapid_transitions = 0
-        for i in range(len(events)-1):
-            if events[i+1]['timestamp'] - events[i]['timestamp'] < 120:  # 2 minutes
+        for i in range(len(timestamps) - 1):
+            if timestamps[i+1] - timestamps[i] < 120:
                 rapid_transitions += 1
         features['rapid_transitions'] = rapid_transitions
+
+        # Attribute features:
+        # For each attribute present, create a feature (e.g., "TemperatureMeasurement_MeasuredValue")
+        # and aggregate by taking the average value for that attribute over the period.
+        attr_values = {}  # key: feature name, value: list of measurements
+        for event in events:
+            attr = event.get('attribute', {})
+            # Each event's attribute is assumed to be a dict with a single key
+            for attr_name, inner in attr.items():
+                # inner is a dict (e.g., {"MeasuredValue": 1901} or {"Occupancy": 1})
+                for inner_key, value in inner.items():
+                    feature_key = f"{attr_name}_{inner_key}"
+                    try:
+                        numeric_value = float(value)
+                    except (ValueError, TypeError):
+                        continue
+                    if feature_key not in attr_values:
+                        attr_values[feature_key] = []
+                    attr_values[feature_key].append(numeric_value)
+        
+        # Compute the average for each attribute feature if available
+        for key, values in attr_values.items():
+            features[key] = float(np.mean(values))
         
         return features
     
     # Function to predict result for a new datapoint
-    def predict_anomaly(self, model, scaler, new_data):
+    def predict_anomaly(self, model, scaler, vec, new_data):
         """Predict if a new day's data is anomalous."""
         features = self.prepare_features(new_data)
-        X = np.array([list(features.values())])
+        # Use the same vectorizer to transform the feature dictionary
+        X = vec.transform([features])
+        # Scale the transformed features
         X_scaled = scaler.transform(X)
         prediction = model.predict(X_scaled)
         probability = model.predict_proba(X_scaled)
@@ -83,6 +107,7 @@ class RandomForestAgent(Agent):
             'confidence': float(max(probability[0])),
             'features_used': list(features.keys())
         }
+
         
     def estimate(self, situation: Situation) -> str:    
         """
@@ -91,7 +116,7 @@ class RandomForestAgent(Agent):
         :return: the estimate
         """        
         self.log("Random Forest Agent is starting a prediction")
-        result = self.predict_anomaly(self.model, self.scaler, situation)
+        result = self.predict_anomaly(self.model, self.scaler, self.vec, situation)
         self.log(f"Random Forest Agent completed - prediction is_anomalous:{result['is_anomalous']}")
         if result['is_anomalous']:
             return 'anomalous'
