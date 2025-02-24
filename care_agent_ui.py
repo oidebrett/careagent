@@ -193,12 +193,12 @@ class App:
                     <thead>
                         <tr>
                             <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Result</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Initial Result</th>
                             <th style="border: 1px solid #ddd; padding: 8px;">Start Time</th>
                             <th style="border: 1px solid #ddd; padding: 8px;">End Time</th>
                             <th style="border: 1px solid #ddd; padding: 8px;">Start Timestamp</th>
                             <th style="border: 1px solid #ddd; padding: 8px;">End Timestamp</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Action</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Voted Result</th>
                         </tr>
                     </thead>
                     <tbody>
