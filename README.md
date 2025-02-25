@@ -41,6 +41,28 @@ The Care Agent project is designed to monitor and analyze the daily activities o
     pip install -r requirements.txt
     ```
 
+3.1 ***Issues with PyArrow Installation on MacOS
+
+If you encounter issues installing `pyarrow` on macOS, especially errors related to `CMake` or missing `ArrowConfig.cmake`, follow these steps:
+
+Ensure your `pip`, `setuptools`, and `wheel` are up to date:
+```bash
+   pip install --upgrade pip setuptools wheel
+```
+Install PyArrow Without Build Isolation
+Use the following command to install pyarrow while avoiding build issues:
+
+``` bash
+pip install --no-build-isolation --no-cache-dir pyarrow
+```
+Install Missing Dependencies (If Needed)
+If the installation fails due to missing modules (e.g., Cython), install them manually:
+
+``` bash
+pip install cython
+```
+
+
 4. **Set Up Environment Variables**
 
     Create a `.env` file in the project root directory and add your API keys:
