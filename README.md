@@ -41,7 +41,7 @@ The Care Agent project is designed to monitor and analyze the daily activities o
     pip install -r requirements.txt
     ```
 
-3.1 ***Issues with PyArrow Installation on MacOS
+3.1. **Issues with PyArrow Installation on MacOS
 
 If you encounter issues installing `pyarrow` on macOS, especially errors related to `CMake` or missing `ArrowConfig.cmake`, follow these steps:
 
