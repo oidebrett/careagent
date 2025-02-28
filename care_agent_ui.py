@@ -54,7 +54,7 @@ class App:
         return self.agent_framework
 
     def run(self):
-        with gr.Blocks(title="The Care Agent", fill_width=True) as ui:
+        with gr.Blocks(title="The Care Agent", fill_width=True, theme='Zarkel/IBM_Carbon_Theme') as ui:
 
             log_data = gr.State([])
 
@@ -193,12 +193,12 @@ class App:
                     <thead>
                         <tr>
                             <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Initial Result</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Initial Estimate</th>
                             <th style="border: 1px solid #ddd; padding: 8px;">Start Time</th>
                             <th style="border: 1px solid #ddd; padding: 8px;">End Time</th>
                             <th style="border: 1px solid #ddd; padding: 8px;">Start Timestamp</th>
                             <th style="border: 1px solid #ddd; padding: 8px;">End Timestamp</th>
-                            <th style="border: 1px solid #ddd; padding: 8px;">Voted Result</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Voted Estimate</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -239,7 +239,7 @@ class App:
             with gr.Row():
                 gr.Markdown('<div style="text-align: center;font-size:24px">"The Care Agent" - Smarthome Agentic AI</div>')
             with gr.Row():
-                gr.Markdown('<div style="text-align: center;font-size:14px">Autonomous agent framework that detects issues with Elderly people, collaborating with a proprietary fine-tuned LLM deployed on Modal, and a RAG pipeline with a frontier model and Chroma.</div>')
+                gr.Markdown('<div style="text-align: center;font-size:14px">Autonomous agent framework that detects issues with Elderly people, collaborating with a proprietary fine-tuned LLM deployed on Modal, and a RAG pipeline with a frontier model and Vector Search.</div>')
 
             with gr.Row():
                 with gr.Column(scale=1):
