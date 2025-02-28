@@ -432,13 +432,14 @@
   },
   {
     "situation": {
-      "situation_description": "The elderly person was detected as being in the kitchen for an extended period, indicated by a change in occupancy sensors. The relative humidity measurement suggests a potentially concerning condition, possibly related to cooking or another activity that could affect health or safety. The occupancy sensing indicates that they were not moving out of the kitchen space, which could warrant additional monitoring for unusual behavior.",
-      "result": "anomalous",
+      "situation_description": "On February 28, 2025, between 15:32 and 15:40, the kitchen area recorded several events. At 15:32, the relative humidity was measured at 49.05%. Shortly after, occupancy was detected in the kitchen at 15:32:20. Later, at 15:40:42, a temperature measurement of 17.24\u00b0C was recorded in the same room.",
+      "result": "normal",
       "start_timestamp": 1740756728,
-      "end_timestamp": 1740756740,
+      "end_timestamp": 1740757242,
       "details": [
         "{\"timestamp\": 1740756728, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 4905}}}",
-        "{\"timestamp\": 1740756740, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}"
+        "{\"timestamp\": 1740756740, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740757242, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1724}}}"
       ]
     },
     "estimate": "normal"

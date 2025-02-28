@@ -58,7 +58,8 @@ class FrontierAgent(Agent):
         user_prompt = self.make_context(similar_situations)
         user_prompt += "And now the situaton for you:\n\n"
         details = situation.details
-        user_prompt += "How would you classify this sensor data - normal or anomalous?\n\n" + json.dumps(details)
+        description = situation.situation_description
+        user_prompt += "How would you classify this situation and related sensor data - normal or anomalous?\n\n" + str(description) + "\n\n" + json.dumps(details)
         return [
             {"role": "system", "content": system_message},
             {"role": "user", "content": user_prompt},
