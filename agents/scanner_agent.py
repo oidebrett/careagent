@@ -80,7 +80,7 @@ Here are the log entries:
                 # Convert timestamp to a datetime object in local timezone
                 dt = datetime.fromtimestamp(ts, tz=TIMEZONE)
                 # Format datetime to a human-readable string (e.g., "Sun Jan 26 2025 20:00:00")
-                detail["eventTime"] = dt.strftime("%a %b %d %Y %H:%M:%S")
+                detail["datetime"] = dt.strftime("%a %b %d %Y %H:%M:%S")
 
 
     def transform_json(self, data):
