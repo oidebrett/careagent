@@ -12071,5 +12071,163 @@
         ]
     },
     "estimate": "anomalous"
-  }
+  },
+  {
+    "situation": {
+      "situation_description": "Between 07:00 and 09:30 GMT, the person was detected in the bedroom, then moved to the bathroom at 07:15 GMT. At 07:30 GMT, they entered the kitchen, where the fridge was opened at 07:35 GMT. They remained in the kitchen until 08:00 GMT, then moved to the living room. The person stayed in the living room until 09:00 GMT, then briefly visited the porch at 09:15 GMT before returning to the hall by 09:30 GMT.",
+      "result": "normal",
+      "start_timestamp": 1741168800,
+      "end_timestamp": 1741177800,
+      "details": [
+        {"timestamp": 1741168800, "datetime": "Mon Mar 03 2025 07:00:00", "room": "bedroom", "nodeId": 2, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741169400, "datetime": "Mon Mar 03 2025 07:10:00", "room": "bedroom", "nodeId": 4, "endpointId": 2, "attribute": {"TemperatureMeasurement": {"MeasuredValue": 2100}}},
+        {"timestamp": 1741169700, "datetime": "Mon Mar 03 2025 07:15:00", "room": "bedroom", "nodeId": 2, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741169700, "datetime": "Mon Mar 03 2025 07:15:00", "room": "bathroom", "nodeId": 5, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741170600, "datetime": "Mon Mar 03 2025 07:30:00", "room": "bathroom", "nodeId": 5, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741170600, "datetime": "Mon Mar 03 2025 07:30:00", "room": "kitchen", "nodeId": 8, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741170900, "datetime": "Mon Mar 03 2025 07:35:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_opened"}}},
+        {"timestamp": 1741171200, "datetime": "Mon Mar 03 2025 07:40:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_closed"}}},
+        {"timestamp": 1741172400, "datetime": "Mon Mar 03 2025 08:00:00", "room": "kitchen", "nodeId": 8, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741172400, "datetime": "Mon Mar 03 2025 08:00:00", "room": "livingroom", "nodeId": 12, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741176000, "datetime": "Mon Mar 03 2025 09:00:00", "room": "livingroom", "nodeId": 12, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741176900, "datetime": "Mon Mar 03 2025 09:15:00", "room": "porch", "nodeId": 14, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741177800, "datetime": "Mon Mar 03 2025 09:30:00", "room": "porch", "nodeId": 14, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741177800, "datetime": "Mon Mar 03 2025 09:30:00", "room": "hall", "nodeId": 3, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}}
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "From 12:00 to 14:00 GMT, the person was in the living room. At 12:30 GMT, the temperature in the living room rose to 25°C. At 13:00 GMT, the person moved to the kitchen and opened the fridge at 13:05 GMT, closed it at 13:07 GMT. The person then moved back to the living room at 13:15 GMT and remained there until 14:00 GMT.",
+      "result": "normal",
+      "start_timestamp": 1741183200,
+      "end_timestamp": 1741190400,
+      "details": [
+        {"timestamp": 1741183200, "datetime": "Mon Mar 03 2025 12:00:00", "room": "livingroom", "nodeId": 12, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741185000, "datetime": "Mon Mar 03 2025 12:30:00", "room": "livingroom", "nodeId": 13, "endpointId": 2, "attribute": {"TemperatureMeasurement": {"MeasuredValue": 2500}}},
+        {"timestamp": 1741186800, "datetime": "Mon Mar 03 2025 13:00:00", "room": "livingroom", "nodeId": 12, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741186800, "datetime": "Mon Mar 03 2025 13:00:00", "room": "kitchen", "nodeId": 8, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741187100, "datetime": "Mon Mar 03 2025 13:05:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_opened"}}},
+        {"timestamp": 1741187220, "datetime": "Mon Mar 03 2025 13:07:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_closed"}}},
+        {"timestamp": 1741187700, "datetime": "Mon Mar 03 2025 13:15:00", "room": "kitchen", "nodeId": 8, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741187700, "datetime": "Mon Mar 03 2025 13:15:00", "room": "livingroom", "nodeId": 12, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741190400, "datetime": "Mon Mar 03 2025 14:00:00", "room": "livingroom", "nodeId": 12, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}}
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "Between 22:00 and 23:30 GMT, the person was detected in the bedroom. The bedroom light was turned on at 22:05 GMT. At 22:15 GMT, the bathroom light turned on and the person moved from the bedroom to the bathroom. The bathroom humidity increased to 75% at 22:25 GMT. At 22:30 GMT, the person returned to the bedroom, turned off the bathroom light, and the bedroom light remained on until 23:15 GMT when it was turned off.",
+      "result": "normal",
+      "start_timestamp": 1741222800,
+      "end_timestamp": 1741228200,
+      "details": [
+        {"timestamp": 1741222800, "datetime": "Mon Mar 03 2025 22:00:00", "room": "bedroom", "nodeId": 2, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741223100, "datetime": "Mon Mar 03 2025 22:05:00", "room": "bedroom", "nodeId": 3, "endpointId": 2, "attribute": {"OnOff": {"OnOff": true}}},
+        {"timestamp": 1741223700, "datetime": "Mon Mar 03 2025 22:15:00", "room": "bedroom", "nodeId": 2, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741223700, "datetime": "Mon Mar 03 2025 22:15:00", "room": "bathroom", "nodeId": 5, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741223700, "datetime": "Mon Mar 03 2025 22:15:00", "room": "bathroom", "nodeId": 6, "endpointId": 2, "attribute": {"OnOff": {"OnOff": true}}},
+        {"timestamp": 1741224300, "datetime": "Mon Mar 03 2025 22:25:00", "room": "bathroom", "nodeId": 7, "endpointId": 3, "attribute": {"RelativeHumidityMeasurement": {"MeasuredValue": 7500}}},
+        {"timestamp": 1741224600, "datetime": "Mon Mar 03 2025 22:30:00", "room": "bathroom", "nodeId": 5, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741224600, "datetime": "Mon Mar 03 2025 22:30:00", "room": "bathroom", "nodeId": 6, "endpointId": 2, "attribute": {"OnOff": {"OnOff": false}}},
+        {"timestamp": 1741224600, "datetime": "Mon Mar 03 2025 22:30:00", "room": "bedroom", "nodeId": 2, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741227300, "datetime": "Mon Mar 03 2025 23:15:00", "room": "bedroom", "nodeId": 3, "endpointId": 2, "attribute": {"OnOff": {"OnOff": false}}},
+        {"timestamp": 1741228200, "datetime": "Mon Mar 03 2025 23:30:00", "room": "bedroom", "nodeId": 2, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}}
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "From 15:00 to 17:30 GMT, the person moved between multiple rooms. At 15:00 GMT, they were in the living room. At 15:20 GMT, they moved to the kitchen. At 15:30 GMT, they opened the fridge, and closed it at 15:32 GMT. At 15:45 GMT, they moved to the hall, then to the porch at 16:00 GMT where the temperature was 18°C. At 16:30 GMT, they returned to the hall, then to the living room at 16:45 GMT. They remained in the living room until 17:30 GMT.",
+      "result": "normal",
+      "start_timestamp": 1741194000,
+      "end_timestamp": 1741203000,
+      "details": [
+        {"timestamp": 1741194000, "datetime": "Mon Mar 03 2025 15:00:00", "room": "livingroom", "nodeId": 12, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741195200, "datetime": "Mon Mar 03 2025 15:20:00", "room": "livingroom", "nodeId": 12, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741195200, "datetime": "Mon Mar 03 2025 15:20:00", "room": "kitchen", "nodeId": 8, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741195800, "datetime": "Mon Mar 03 2025 15:30:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_opened"}}},
+        {"timestamp": 1741195920, "datetime": "Mon Mar 03 2025 15:32:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_closed"}}},
+        {"timestamp": 1741196700, "datetime": "Mon Mar 03 2025 15:45:00", "room": "kitchen", "nodeId": 8, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741196700, "datetime": "Mon Mar 03 2025 15:45:00", "room": "hall", "nodeId": 3, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741197600, "datetime": "Mon Mar 03 2025 16:00:00", "room": "hall", "nodeId": 3, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741197600, "datetime": "Mon Mar 03 2025 16:00:00", "room": "porch", "nodeId": 14, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741197600, "datetime": "Mon Mar 03 2025 16:00:00", "room": "porch", "nodeId": 15, "endpointId": 2, "attribute": {"TemperatureMeasurement": {"MeasuredValue": 1800}}},
+        {"timestamp": 1741199400, "datetime": "Mon Mar 03 2025 16:30:00", "room": "porch", "nodeId": 14, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741199400, "datetime": "Mon Mar 03 2025 16:30:00", "room": "hall", "nodeId": 3, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741200300, "datetime": "Mon Mar 03 2025 16:45:00", "room": "hall", "nodeId": 3, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741200300, "datetime": "Mon Mar 03 2025 16:45:00", "room": "livingroom", "nodeId": 12, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741203000, "datetime": "Mon Mar 03 2025 17:30:00", "room": "livingroom", "nodeId": 12, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}}
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "Between 02:00 and 05:30 GMT, multiple fridge openings were detected in the kitchen. The person was first detected in the kitchen at 02:00 GMT. The fridge was opened at 02:05 GMT, closed at 02:07 GMT, then reopened at 02:30 GMT, closed at 02:32 GMT. It was opened again at 03:15 GMT, closed at 03:17 GMT, opened at 04:00 GMT, closed at 04:02 GMT, then opened at 05:00 GMT and closed at 05:02 GMT. The person remained in the kitchen until 05:30 GMT.",
+      "result": "anomalous",
+      "start_timestamp": 1741150800,
+      "end_timestamp": 1741163400,
+      "details": [
+        {"timestamp": 1741150800, "datetime": "Mon Mar 03 2025 02:00:00", "room": "kitchen", "nodeId": 8, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741151100, "datetime": "Mon Mar 03 2025 02:05:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_opened"}}},
+        {"timestamp": 1741151220, "datetime": "Mon Mar 03 2025 02:07:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_closed"}}},
+        {"timestamp": 1741152600, "datetime": "Mon Mar 03 2025 02:30:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_opened"}}},
+        {"timestamp": 1741152720, "datetime": "Mon Mar 03 2025 02:32:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_closed"}}},
+        {"timestamp": 1741155300, "datetime": "Mon Mar 03 2025 03:15:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_opened"}}},
+        {"timestamp": 1741155420, "datetime": "Mon Mar 03 2025 03:17:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_closed"}}},
+        {"timestamp": 1741158000, "datetime": "Mon Mar 03 2025 04:00:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_opened"}}},
+        {"timestamp": 1741158120, "datetime": "Mon Mar 03 2025 04:02:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_closed"}}},
+        {"timestamp": 1741161600, "datetime": "Mon Mar 03 2025 05:00:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_opened"}}},
+        {"timestamp": 1741161720, "datetime": "Mon Mar 03 2025 05:02:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_closed"}}},
+        {"timestamp": 1741163400, "datetime": "Mon Mar 03 2025 05:30:00", "room": "kitchen", "nodeId": 8, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}}
+      ]
+    },
+    "estimate": "anomalous"
+  },
+  {
+    "situation": {
+      "situation_description": "From 06:00 to 08:30 GMT, the person was in various rooms. At 06:00 GMT, they were detected in the bedroom with a temperature of 20°C. At 06:15 GMT, they moved to the bathroom, where humidity increased to 70% at 06:25 GMT. At 06:45 GMT, they moved to the kitchen and opened the fridge at 06:50 GMT, closing it at 06:52 GMT. At 07:00 GMT, they moved to the living room where they remained until 08:30 GMT.",
+      "result": "normal",
+      "start_timestamp": 1741165200,
+      "end_timestamp": 1741174200,
+      "details": [
+        {"timestamp": 1741165200, "datetime": "Mon Mar 03 2025 06:00:00", "room": "bedroom", "nodeId": 2, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741165200, "datetime": "Mon Mar 03 2025 06:00:00", "room": "bedroom", "nodeId": 4, "endpointId": 2, "attribute": {"TemperatureMeasurement": {"MeasuredValue": 2000}}},
+        {"timestamp": 1741165800, "datetime": "Mon Mar 03 2025 06:10:00", "room": "bedroom", "nodeId": 3, "endpointId": 2, "attribute": {"OnOff": {"OnOff": true}}},
+        {"timestamp": 1741166100, "datetime": "Mon Mar 03 2025 06:15:00", "room": "bedroom", "nodeId": 2, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741166100, "datetime": "Mon Mar 03 2025 06:15:00", "room": "bedroom", "nodeId": 3, "endpointId": 2, "attribute": {"OnOff": {"OnOff": false}}},
+        {"timestamp": 1741166100, "datetime": "Mon Mar 03 2025 06:15:00", "room": "bathroom", "nodeId": 5, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741166100, "datetime": "Mon Mar 03 2025 06:15:00", "room": "bathroom", "nodeId": 6, "endpointId": 2, "attribute": {"OnOff": {"OnOff": true}}},
+        {"timestamp": 1741166700, "datetime": "Mon Mar 03 2025 06:25:00", "room": "bathroom", "nodeId": 7, "endpointId": 3, "attribute": {"RelativeHumidityMeasurement": {"MeasuredValue": 7000}}},
+        {"timestamp": 1741167900, "datetime": "Mon Mar 03 2025 06:45:00", "room": "bathroom", "nodeId": 5, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741167900, "datetime": "Mon Mar 03 2025 06:45:00", "room": "bathroom", "nodeId": 6, "endpointId": 2, "attribute": {"OnOff": {"OnOff": false}}},
+        {"timestamp": 1741167900, "datetime": "Mon Mar 03 2025 06:45:00", "room": "kitchen", "nodeId": 8, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741168200, "datetime": "Mon Mar 03 2025 06:50:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_opened"}}},
+        {"timestamp": 1741168320, "datetime": "Mon Mar 03 2025 06:52:00", "room": "kitchen", "nodeId": 9, "endpointId": 3, "attribute": {"Event": {"Event": "fridge_closed"}}},
+        {"timestamp": 1741168800, "datetime": "Mon Mar 03 2025 07:00:00", "room": "kitchen", "nodeId": 8, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}},
+        {"timestamp": 1741168800, "datetime": "Mon Mar 03 2025 07:00:00", "room": "livingroom", "nodeId": 12, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741174200, "datetime": "Mon Mar 03 2025 08:30:00", "room": "livingroom", "nodeId": 12, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 0}}}
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "Between 01:00 and 06:00 GMT, no movement was detected in any room. The person was last detected in the bedroom at 01:00 GMT, with the temperature at 21°C and the light off. No occupancy events were registered in any other room until 06:00 GMT when movement was detected again in the bedroom.",
+      "result": "normal",
+      "start_timestamp": 1741147200,
+      "end_timestamp": 1741165200,
+      "details": [
+        {"timestamp": 1741147200, "datetime": "Mon Mar 03 2025 01:00:00", "room": "bedroom", "nodeId": 2, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}},
+        {"timestamp": 1741147200, "datetime": "Mon Mar 03 2025 01:00:00", "room": "bedroom", "nodeId": 4, "endpointId": 2, "attribute": {"TemperatureMeasurement": {"MeasuredValue": 2100}}},
+        {"timestamp": 1741147200, "datetime": "Mon Mar 03 2025 01:00:00", "room": "bedroom", "nodeId": 3, "endpointId": 2, "attribute": {"OnOff": {"OnOff": false}}},
+        {"timestamp": 1741165200, "datetime": "Mon Mar 03 2025 06:00:00", "room": "bedroom", "nodeId": 2, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}}
+      ]
+    },
+    "estimate": "normal"
+  }  
 ]

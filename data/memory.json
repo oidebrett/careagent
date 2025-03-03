@@ -26,5 +26,56 @@
       ]
     },
     "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "On March 2, 2025, from 18:58 to 00:58, there was a recorded temperature measurement in the kitchen. The temperature was noted at 1812, indicating a specific environmental condition in that room. During this period, no other movements or sensor events were documented. The log reflects only this single interaction.",
+      "result": "normal",
+      "start_timestamp": 1740941894,
+      "end_timestamp": 1740941894,
+      "details": [
+        "{\"timestamp\": 1740941894, \"datetime\": \"Sun Mar 02 2025 18:58:14\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1812}}}"
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "During this period, the kitchen was monitored extensively with various readings being recorded. Initial temperature measurements were taken between 1:33 AM and 2:55 AM, followed by further readings at approximately 3:55 AM and 4:55 AM, suggesting ongoing monitoring of the kitchen climate. Notably, occupancy sensors detected presence in the kitchen around 6:32 AM, with subsequent readings indicating that the area was unoccupied shortly after, and then occupied again at 7:05 AM. Humidity measurements consistently decreased throughout the morning, while temperature readings also fluctuated at similar intervals.",
+      "result": "normal",
+      "start_timestamp": 1740965589,
+      "end_timestamp": 1740985599,
+      "details": [
+        "{\"timestamp\": 1740965589, \"datetime\": \"Mon Mar 03 2025 01:33:09\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5775}}}",
+        "{\"timestamp\": 1740966945, \"datetime\": \"Mon Mar 03 2025 01:55:45\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1878}}}",
+        "{\"timestamp\": 1740969190, \"datetime\": \"Mon Mar 03 2025 02:33:10\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5697}}}",
+        "{\"timestamp\": 1740970546, \"datetime\": \"Mon Mar 03 2025 02:55:46\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1864}}}",
+        "{\"timestamp\": 1740972791, \"datetime\": \"Mon Mar 03 2025 03:33:11\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5616}}}",
+        "{\"timestamp\": 1740974147, \"datetime\": \"Mon Mar 03 2025 03:55:47\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1850}}}",
+        "{\"timestamp\": 1740976392, \"datetime\": \"Mon Mar 03 2025 04:33:12\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5568}}}",
+        "{\"timestamp\": 1740977748, \"datetime\": \"Mon Mar 03 2025 04:55:48\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1837}}}",
+        "{\"timestamp\": 1740979993, \"datetime\": \"Mon Mar 03 2025 05:33:13\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5508}}}",
+        "{\"timestamp\": 1740981349, \"datetime\": \"Mon Mar 03 2025 05:55:49\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1823}}}",
+        "{\"timestamp\": 1740983576, \"datetime\": \"Mon Mar 03 2025 06:32:56\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740983594, \"datetime\": \"Mon Mar 03 2025 06:33:14\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5450}}}",
+        "{\"timestamp\": 1740983637, \"datetime\": \"Mon Mar 03 2025 06:33:57\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
+        "{\"timestamp\": 1740984950, \"datetime\": \"Mon Mar 03 2025 06:55:50\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1810}}}",
+        "{\"timestamp\": 1740985535, \"datetime\": \"Mon Mar 03 2025 07:05:35\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
+        "{\"timestamp\": 1740985599, \"datetime\": \"Mon Mar 03 2025 07:06:39\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}"
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "On March 3, 2025, at 7:33 AM, a log entry recorded a measurement in the kitchen indicating a relative humidity level of 5390. This observation details one instance of environmental monitoring in the kitchen area during the early morning hours. No additional movements or sensor events were noted within this time frame. The recorded humidity measurement was the sole activity captured.",
+      "result": "normal",
+      "start_timestamp": 1740987196,
+      "end_timestamp": 1740987196,
+      "details": [
+        "{\"timestamp\": 1740987196, \"datetime\": \"Mon Mar 03 2025 07:33:16\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5390}}}"
+      ]
+    },
+    "estimate": "anomalous"
   }
 ]
