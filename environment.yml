@@ -1,0 +1,28 @@
+name: agents
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - jupyterlab
+  - ipywidgets
+  - matplotlib
+  - scikit-learn
+  - pytorch
+  - pyarrow
+  - pip:
+      - python-dotenv
+      - huggingface_hub
+      - transformers
+      - datasets
+      - tqdm
+      - torch
+      - openai
+      - gradio
+      - gradio_modal
+      - sentence-transformers
+      - plotly
+      - anthropic
+      - tabpfn
+
