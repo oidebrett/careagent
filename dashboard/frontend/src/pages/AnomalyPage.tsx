@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import type { FC } from "react";
+import { useState } from "react";
 import { useSensorData, countPendingAnomalies } from "../utils/sensorData";
 import { AnomalyList } from "components/AnomalyList";
 import { AnomalyDetail } from "components/AnomalyDetail";
 import { AnomalyLog as AnomalyLogType, ReviewStatus } from "../utils/sensorData";
 import { useNavigate } from "react-router-dom";
 
-export default function AnomalyPage() {
+const AnomalyPage: FC = () => {
   const navigate = useNavigate();
   const { anomalyLogs, loading, error, updateAnomalyStatus } = useSensorData();
   const [selectedAnomaly, setSelectedAnomaly] = useState<AnomalyLogType | null>(null);
@@ -25,6 +26,7 @@ export default function AnomalyPage() {
   };
   
   return (
+    <>
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow">
         <div className="container mx-auto px-4 py-6">
@@ -95,5 +97,8 @@ export default function AnomalyPage() {
         </div>
       </footer>
     </div>
+    </>
   );
-}
+};
+
+export default AnomalyPage;
