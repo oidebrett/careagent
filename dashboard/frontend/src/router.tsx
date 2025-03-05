@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { userRoutes } from "./user-routes";
 
 export const SuspenseWrapper = ({ children }: { children: ReactNode }) => {
-  return <Suspense>{children}</Suspense>;
+  return <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>;
 };
 
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));

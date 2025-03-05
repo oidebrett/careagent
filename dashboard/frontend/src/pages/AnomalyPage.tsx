@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, startTransition } from "react";
 import { useSensorData, countPendingAnomalies } from "../utils/sensorData";
 import { AnomalyList } from "components/AnomalyList";
 import { AnomalyDetail } from "components/AnomalyDetail";
 import { AnomalyLog as AnomalyLogType, ReviewStatus } from "../utils/sensorData";
 import { useNavigate } from "react-router-dom";
+import { useTransitionNavigate } from "../components/TransitionLink";
 
 export default function AnomalyPage() {
   const navigate = useNavigate();
+  const transitionNavigate = useTransitionNavigate();
   const { anomalyLogs, loading, error, updateAnomalyStatus } = useSensorData();
   const [selectedAnomaly, setSelectedAnomaly] = useState<AnomalyLogType | null>(null);
   const pendingCount = countPendingAnomalies(anomalyLogs);
@@ -34,7 +36,7 @@ export default function AnomalyPage() {
               <p className="text-sm text-gray-500">Anomaly Detection & Logging</p>
             </div>
             <button 
-              onClick={() => navigate('/')}
+              onClick={() => transitionNavigate('/')}
               className="rounded-md bg-gray-100 px-4 py-2 text-gray-600 hover:bg-gray-200 flex items-center"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, startTransition } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTransitionNavigate } from '../components/TransitionLink';
 import { 
   useSensorData, 
   extractSensorTypes, 
@@ -14,6 +15,7 @@ import { AnomalyComparison } from 'components/AnomalyComparison';
 
 export default function VisualizationPage() {
   const navigate = useNavigate();
+  const transitionNavigate = useTransitionNavigate();
   const { data, loading, error } = useSensorData();
   
   // Filter states
@@ -98,7 +100,7 @@ export default function VisualizationPage() {
             </div>
             <div className="flex items-center space-x-3">
               <button 
-                onClick={() => navigate('/')}
+                onClick={() => transitionNavigate('/')}
                 className="rounded-md bg-gray-100 px-4 py-2 text-gray-600 hover:bg-gray-200 flex items-center"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
@@ -108,7 +110,7 @@ export default function VisualizationPage() {
               </button>
               
               <button 
-                onClick={() => navigate('/anomaly-page')}
+                onClick={() => transitionNavigate('/anomaly-page')}
                 className="rounded-md bg-gray-100 px-4 py-2 text-gray-600 hover:bg-gray-200 flex items-center"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

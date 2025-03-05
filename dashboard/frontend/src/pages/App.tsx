@@ -1,13 +1,15 @@
-import React from "react";
+import React, { startTransition } from "react";
 import { useSensorData, getRecentSituations, getLatestSensorReadings, countAnomalies, countPendingAnomalies } from "../utils/sensorData";
 import { StatusCard } from "components/StatusCard";
 import { SituationList } from "components/SituationList";
 import { SensorReadings } from "components/SensorReadings";
 import { AnomalyList } from "components/AnomalyList";
 import { useNavigate } from "react-router-dom";
+import { useTransitionNavigate } from "../components/TransitionLink";
 
 export default function App() {
   const navigate = useNavigate();
+  const transitionNavigate = useTransitionNavigate();
   const { data, anomalyLogs, loading, error } = useSensorData();
   const recentSituations = getRecentSituations(data, 5);
   const latestReadings = getLatestSensorReadings(data);
@@ -26,7 +28,7 @@ export default function App() {
             {/* Placeholder for user menu/settings button */}
             <div className="flex items-center space-x-3">
               <button 
-                onClick={() => navigate('/anomaly-page')}
+                onClick={() => transitionNavigate('/anomaly-page')}
                 className="rounded-md bg-gray-100 px-4 py-2 text-gray-600 hover:bg-gray-200 flex items-center"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,7 +43,7 @@ export default function App() {
               </button>
               
               <button 
-                onClick={() => navigate('/visualization-page')}
+                onClick={() => transitionNavigate('/visualization-page')}
                 className="rounded-md bg-gray-100 px-4 py-2 text-gray-600 hover:bg-gray-200 flex items-center"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -125,7 +127,7 @@ export default function App() {
             <div className="mt-6">
               <AnomalyList 
                 anomalies={anomalyLogs.filter(log => log.reviewStatus === 'pending').slice(0, 3)}
-                onSelectAnomaly={() => navigate('/anomaly-page')}
+                onSelectAnomaly={() => transitionNavigate('/anomaly-page')}
                 title="Recent Anomalies"
                 showFilters={false}
                 compact={true}
@@ -134,7 +136,7 @@ export default function App() {
               {anomalyLogs.filter(log => log.reviewStatus === 'pending').length > 3 && (
                 <div className="mt-3 text-center">
                   <button 
-                    onClick={() => navigate('/anomaly-page')}
+                    onClick={() => transitionNavigate('/anomaly-page')}
                     className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800"
                   >
                     View all anomalies
