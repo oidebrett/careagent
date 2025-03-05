@@ -77,5 +77,77 @@
       ]
     },
     "estimate": "anomalous"
+  },
+  {
+    "situation": {
+      "situation_description": "On March 3, 2025, at 13:33:22, a movement was recorded in the kitchen. The relative humidity measurement was noted at this time, indicating environmental conditions within the room. No additional movements or events were logged during this period. The log entry provides a specific timestamp and details related to the kitchen's atmosphere.",
+      "result": "normal",
+      "start_timestamp": 1741008802,
+      "end_timestamp": 1741008802,
+      "details": [
+        "{\"timestamp\": 1741008802, \"datetime\": \"Mon Mar 03 2025 13:33:22\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5142}}}"
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "During the specified period, a log entry was recorded from the kitchen at 19:33:28, indicating a humidity measurement of 55.86%. This entry suggests activity within the kitchen area, likely related to the ambient conditions of that space. The log does not indicate any further movements or events within this timeframe. Consequently, the details are limited to the one observation recorded.",
+      "result": "normal",
+      "start_timestamp": 1741030408,
+      "end_timestamp": 1741030408,
+      "details": [
+        "{\"timestamp\": 1741030408, \"datetime\": \"Mon Mar 03 2025 19:33:28\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5586}}}"
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "On March 4, 2025, at 1:33 AM, a log entry recorded a measurement in the kitchen. The recorded humidity level was 58.38%. This indicates sensor activity related to environmental monitoring in that room during the early morning hours. No additional movements or sensor events were logged within this 6-hour interval.",
+      "result": "normal",
+      "start_timestamp": 1741052014,
+      "end_timestamp": 1741052014,
+      "details": [
+        "{\"timestamp\": 1741052014, \"datetime\": \"Tue Mar 04 2025 01:33:34\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5838}}}"
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "On March 4, 2025, from 07:33:42, there was recorded activity in the kitchen. The relative humidity measurement was noted at 56.51%, indicating a potential environmental change during this time. There were no other recorded movements or events in this 6-hour interval. The logs suggest that monitoring occurred focusing on the kitchen environment. Further details would be needed to assess daily routines.",
+      "result": "normal",
+      "start_timestamp": 1741073622,
+      "end_timestamp": 1741073622,
+      "details": [
+        "{\"timestamp\": 1741073622, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5651}}}"
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "On March 4, 2025, from 13:41 to 19:41, occupancy was detected in the kitchen. The log recorded the kitchen as occupied at 13:41:26. No other movements or events were logged during this period. The detection suggests that someone was present in the kitchen continuously during the observed timeframe.",
+      "result": "normal",
+      "start_timestamp": 1741095686,
+      "end_timestamp": 1741102886,
+      "details": [
+        "{\"timestamp\": 1741095686, \"datetime\": \"Tue Mar 04 2025 13:41:26\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}"
+      ]
+    },
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "During this period, a temperature measurement was taken in the kitchen, indicating a value of 1844 at approximately 19:44. There are no recorded entries for movement or activity within the premises during this time frame. The log reflects only a single observation without any further details. Consequently, the activity appears limited to temperature measurement.",
+      "result": "anomalous",
+      "start_timestamp": 1741117453,
+      "end_timestamp": 1741117453,
+      "details": [
+        "{\"timestamp\": 1741117453, \"datetime\": \"Tue Mar 04 2025 19:44:13\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1844}}}"
+      ]
+    },
+    "estimate": "anomalous"
   }
 ]
