@@ -12,9 +12,9 @@ from agents.agent import Agent
 from agents.situations import Situation
 
 
-class TabPFNAgent(Agent):
+class RandomForestAgent(Agent):
 
-    name = "TabPFN Agent"
+    name = "Random Forest Agent"
     color = Agent.MAGENTA
 
     def __init__(self):
@@ -22,9 +22,13 @@ class TabPFNAgent(Agent):
         Initialize this object by loading in the saved model weights
         and the SentenceTransformer vector encoding model
         """
-        self.log("TabPFN is initializing")
-        (self.model, self.feature_names) = joblib.load('tabpfn_model.pkl')
-        self.log("TabPFN is ready")
+        super().__init__()  # Important: call parent class __init__
+        self.log("Random Forest Agent is initializing")
+        
+        model_path = self.load_data_file('random_forest_model.pkl')
+        (self.model, self.scaler, self.vec) = joblib.load(model_path)
+        
+        self.log("Random Forest Agent is ready")
 
     def prepare_features(self, data):
         """Convert the raw sensor data into meaningful features dynamically."""
@@ -90,57 +94,34 @@ class TabPFNAgent(Agent):
             features[key] = float(np.mean(values))
         
         return features
-
-    def prepare_tabular_data(self, data, feature_names=None):
-        """Convert a list of JSON entries into a Pandas DataFrame with engineered features."""
-        flattened_data = []
-        for entry in data:
-            features = self.prepare_features(entry)
-            features['result'] = entry.result
-            flattened_data.append(features)
-        
-        df = pd.DataFrame(flattened_data)
-        df = df.fillna('missing')  # Handle missing values
-        
-        if feature_names:
-            missing_features = {feature: 'missing' for feature in feature_names if feature not in df.columns}
-            df = pd.concat([df, pd.DataFrame(missing_features, index=df.index)], axis=1)
-            df = df[feature_names]
-        
-        return df.astype(str)  # Ensure all data is of string type
-
-
+    
     # Function to predict result for a new datapoint
-    def predict_anomaly(self, model, new_data, feature_names):
-        """Predict if a new datapoint is anomalous using TabPFN."""
-        df = self.prepare_tabular_data([new_data], feature_names)
-        X = df.drop(columns=['result'], errors='ignore')
-
-        # Ensure no NaN values are present
-        X = X.fillna('missing')
-
-        # Ensure the feature order matches the training order
-        X = X[feature_names]
-
-        prediction = model.predict(X)
-        probability = model.predict_proba(X)
-
+    def predict_anomaly(self, model, scaler, vec, new_data):
+        """Predict if a new day's data is anomalous."""
+        features = self.prepare_features(new_data)
+        # Use the same vectorizer to transform the feature dictionary
+        X = vec.transform([features])
+        # Scale the transformed features
+        X_scaled = scaler.transform(X)
+        prediction = model.predict(X_scaled)
+        probability = model.predict_proba(X_scaled)
+        
         return {
             'is_anomalous': bool(prediction[0]),
             'confidence': float(max(probability[0])),
-            'features_used': list(X.columns)
+            'features_used': list(features.keys())
         }
 
         
     def estimate(self, situation: Situation) -> str:    
         """
-        Use a tabPFN model to estimate the status of the described situation
+        Use a Random Forest model to estimate the status of the described situation
         :param item: the item to be estimated
         :return: the estimate
         """        
-        self.log("TabPFN Agent is starting a prediction")
-        result = self.predict_anomaly(self.model, situation, self.feature_names)
-        self.log(f"TabPFN Agent completed - prediction is_anomalous:{result['is_anomalous']}")
+        self.log("Random Forest Agent is starting a prediction")
+        result = self.predict_anomaly(self.model, self.scaler, self.vec, situation)
+        self.log(f"Random Forest Agent completed - prediction is_anomalous:{result['is_anomalous']}")
         if result['is_anomalous']:
             return 'anomalous'
         else:

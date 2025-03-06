@@ -26,6 +26,7 @@ class FrontierAgent(Agent):
         And setting up the vector encoding model
         """
         self.log("Initializing Frontier Agent")
+        super().__init__()  # Important: call parent class __init__
         self.openai = OpenAI()
         self.collection = collection
         self.model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
@@ -117,7 +118,7 @@ class FrontierAgent(Agent):
         """
 
         # Example usage:
-        file_path = 'data/memory.json'
+        file_path = self.load_data_file('memory.json')
         query = situation.situation_description
         similar_situations = self.vector_search(file_path, query)
 

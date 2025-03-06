@@ -33,7 +33,9 @@ def init_logging():
 
 class CareAgentFramework:
 
-    MEMORY_FILENAME = "data/memory.json"
+    """Get the project root directory (2 levels up from CareAgentFramework.py)."""
+    ROOT_PROJECT_PATH = os.path.dirname(os.path.dirname(__file__))
+    MEMORY_FILENAME = ROOT_PROJECT_PATH + "/data/memory.json"
 
     def __init__(self):
         init_logging()

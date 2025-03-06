@@ -7,6 +7,8 @@ This project consists of a FastAPI backend server and a React + TypeScript front
 - React+Typescript frontend with `yarn` as package manager.
 - Python FastAPI server with `uv` as package manager.
 
+For information on installing uv, see [uv installaton](https://docs.astral.sh/uv/getting-started/installation/).
+
 ## Quickstart
 
 1. Install dependencies:
