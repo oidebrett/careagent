@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import memoryData from '/home/ivob/Projects/careagent/data/memory.json';
 
 // Define types for our sensor data
 export interface SensorDetail {
@@ -45,7 +46,6 @@ export const generateId = () => {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 };
 
-// Mock data loader function
 export const useSensorData = () => {
   const [data, setData] = useState<SensorDataItem[]>([]);
   const [anomalyLogs, setAnomalyLogs] = useState<AnomalyLog[]>([]);
@@ -53,136 +53,38 @@ export const useSensorData = () => {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    // In a real application, we would fetch this from an API
-    // For now, we'll use a mock implementation
-    const fetchData = async () => {
+    const loadData = () => {
       try {
-        // This is a placeholder - in a real app we would fetch from an API
-        // In future iterations, we'll replace this with actual API calls
-        const mockData: SensorDataItem[] = [
-          {
-            situation: {
-              situation_description: "During this 6-hour period, various movements and sensor readings were recorded in the kitchen. There were multiple instances of occupancy detected, especially between 1:07 PM and 1:32 PM, with the space becoming unoccupied at times in between.",
-              result: "normal",
-              start_timestamp: 1740920170,
-              end_timestamp: 1740925977,
-              details: [
-                '{"timestamp": 1740920170, "datetime": "Sun Mar 02 2025 12:56:10", "room": "kitchen", "nodeId": 6, "endpointId": 6, "attribute": {"RelativeHumidityMeasurement": {"MeasuredValue": 8614}}}',
-                '{"timestamp": 1740920849, "datetime": "Sun Mar 02 2025 13:07:29", "room": "kitchen", "nodeId": 6, "endpointId": 3, "attribute": {"OccupancySensing": {"Occupancy": 1}}}',
-                '{"timestamp": 1740925977, "datetime": "Sun Mar 02 2025 14:32:57", "room": "kitchen", "nodeId": 6, "endpointId": 6, "attribute": {"RelativeHumidityMeasurement": {"MeasuredValue": 5460}}}'
-              ]
-            },
-            estimate: "normal"
+        // Transform memory data into SensorDataItem format
+        const transformedData: SensorDataItem[] = memoryData.map((item: any) => ({
+          situation: {
+            situation_description: item.situation.situation_description,
+            result: item.situation.result,
+            start_timestamp: item.situation.start_timestamp,
+            end_timestamp: item.situation.end_timestamp,
+            details: item.situation.details
           },
-          {
-            situation: {
-              situation_description: "On March 3, 2025, at 7:33 AM, a log entry recorded a measurement in the kitchen indicating a relative humidity level of 5390. This observation details one instance of environmental monitoring in the kitchen area during the early morning hours.",
-              result: "normal",
-              start_timestamp: 1740987196,
-              end_timestamp: 1740987196,
-              details: [
-                '{"timestamp": 1740987196, "datetime": "Mon Mar 03 2025 07:33:16", "room": "kitchen", "nodeId": 6, "endpointId": 6, "attribute": {"RelativeHumidityMeasurement": {"MeasuredValue": 5390}}}'
-              ]
-            },
-            estimate: "anomalous",
-            anomalyId: "anom-1"
-          },
-          {
-            situation: {
-              situation_description: "Unusual activity detected in the bathroom with rapid temperature changes over a short period. Temperature rose from 22°C to 28°C in under 15 minutes without corresponding humidity changes typical of shower use.",
-              result: "anomalous",
-              start_timestamp: 1740989196,
-              end_timestamp: 1740990196,
-              details: [
-                '{"timestamp": 1740989196, "datetime": "Mon Mar 03 2025 08:06:36", "room": "bathroom", "nodeId": 3, "endpointId": 2, "attribute": {"TemperatureMeasurement": {"MeasuredValue": 2200}}}',
-                '{"timestamp": 1740990196, "datetime": "Mon Mar 03 2025 08:23:16", "room": "bathroom", "nodeId": 3, "endpointId": 2, "attribute": {"TemperatureMeasurement": {"MeasuredValue": 2800}}}'
-              ]
-            },
-            estimate: "anomalous",
-            anomalyId: "anom-2"
-          },
-          {
-            situation: {
-              situation_description: "No movement detected in bedroom for extended period during normal waking hours (9AM-11AM). Resident typically shows movement patterns during these hours based on historical data.",
-              result: "anomalous",
-              start_timestamp: 1740991196,
-              end_timestamp: 1740998396,
-              details: [
-                '{"timestamp": 1740991196, "datetime": "Mon Mar 03 2025 08:39:56", "room": "bedroom", "nodeId": 2, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}}',
-                '{"timestamp": 1740998396, "datetime": "Mon Mar 03 2025 10:39:56", "room": "bedroom", "nodeId": 2, "endpointId": 1, "attribute": {"OccupancySensing": {"Occupancy": 1}}}'
-              ]
-            },
-            estimate: "anomalous",
-            anomalyId: "anom-3"
-          },
-          {
-            situation: {
-              situation_description: "Multiple door open/close events detected at the main entrance during nighttime hours (2:15AM-2:45AM), which is outside typical behavior patterns.",
-              result: "anomalous",
-              start_timestamp: 1740941700,
-              end_timestamp: 1740943500,
-              details: [
-                '{"timestamp": 1740941700, "datetime": "Mon Mar 03 2025 02:15:00", "room": "entrance", "nodeId": 1, "endpointId": 4, "attribute": {"OnOff": {"OnOff": 1}}}',
-                '{"timestamp": 1740942000, "datetime": "Mon Mar 03 2025 02:20:00", "room": "entrance", "nodeId": 1, "endpointId": 4, "attribute": {"OnOff": {"OnOff": 0}}}',
-                '{"timestamp": 1740943000, "datetime": "Mon Mar 03 2025 02:36:40", "room": "entrance", "nodeId": 1, "endpointId": 4, "attribute": {"OnOff": {"OnOff": 1}}}',
-                '{"timestamp": 1740943500, "datetime": "Mon Mar 03 2025 02:45:00", "room": "entrance", "nodeId": 1, "endpointId": 4, "attribute": {"OnOff": {"OnOff": 0}}}'
-              ]
-            },
-            estimate: "anomalous",
-            anomalyId: "anom-4"
-          }
-        ];
-        
-        // Create mock anomaly logs
-        const mockAnomalyLogs: AnomalyLog[] = [
-          {
-            id: "anom-1",
-            timestamp: 1740987196,
-            description: "Unusual humidity level detected in kitchen - possibly indicating water leak or appliance malfunction",
-            severityLevel: "low",
-            reviewStatus: "pending",
-            relatedSensors: ["Humidity"],
-            roomLocation: "kitchen",
-            detectionConfidence: 65,
-            situationId: "sit-1"
-          },
-          {
-            id: "anom-2",
-            timestamp: 1740990196,
-            description: "Rapid temperature rise in bathroom without corresponding humidity increase - unusual pattern that doesn't match normal shower or bath use",
-            severityLevel: "medium",
-            reviewStatus: "pending",
-            relatedSensors: ["Temperature", "Humidity"],
-            roomLocation: "bathroom",
-            detectionConfidence: 78,
-            situationId: "sit-2"
-          },
-          {
-            id: "anom-3",
-            timestamp: 1740998396,
-            description: "Extended period without movement in bedroom during typical waking hours - potential indication of resident immobility or fall",
-            severityLevel: "high",
-            reviewStatus: "pending",
-            relatedSensors: ["Motion", "Occupancy"],
-            roomLocation: "bedroom",
-            detectionConfidence: 82,
-            situationId: "sit-3"
-          },
-          {
-            id: "anom-4",
-            timestamp: 1740943500,
-            description: "Multiple door activations during nighttime hours - potential security concern or resident confusion",
-            severityLevel: "critical",
-            reviewStatus: "pending",
-            relatedSensors: ["Door Sensor"],
-            roomLocation: "entrance",
-            detectionConfidence: 91,
-            situationId: "sit-4"
-          }
-        ];
-        
-        setData(mockData);
-        setAnomalyLogs(mockAnomalyLogs);
+          estimate: item.estimate,
+          anomalyId: item.estimate === 'anomalous' ? generateId() : undefined
+        }));
+
+        // Create anomaly logs for anomalous situations
+        const newAnomalyLogs: AnomalyLog[] = transformedData
+          .filter(item => item.estimate === 'anomalous')
+          .map(item => ({
+            id: item.anomalyId!,
+            timestamp: item.situation.end_timestamp,
+            description: item.situation.situation_description,
+            severityLevel: 'medium',
+            reviewStatus: 'pending',
+            relatedSensors: [],
+            roomLocation: '',
+            detectionConfidence: 75,
+            situationId: generateId()
+          }));
+
+        setData(transformedData);
+        setAnomalyLogs(newAnomalyLogs);
         setLoading(false);
       } catch (err) {
         setError(err instanceof Error ? err : new Error('Unknown error occurred'));
@@ -190,7 +92,17 @@ export const useSensorData = () => {
       }
     };
 
-    fetchData();
+    // Initial load
+    loadData();
+
+    // Set up periodic reloading
+    const intervalId = setInterval(() => {
+      // Note: This will reload the same data since imports are static
+      // You would need a different approach to detect file changes
+      loadData();
+    }, 10000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   // Function to update an anomaly's review status

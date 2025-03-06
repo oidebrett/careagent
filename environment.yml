@@ -21,6 +21,7 @@ dependencies:
       - openai
       - gradio
       - gradio_modal
+      - python-multipart
       - sentence-transformers
       - plotly
       - anthropic

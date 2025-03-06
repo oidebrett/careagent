@@ -10,6 +10,7 @@ torch
 scikit-learn
 openai
 gradio
+python-multipart
 gradio_modal
 sentence_transformers
 plotly
