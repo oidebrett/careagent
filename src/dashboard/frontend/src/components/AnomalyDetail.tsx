@@ -1,35 +1,81 @@
-import React, { useState } from "react";
-import { AnomalyLog, ReviewStatus, getSeverityColor, getStatusColor } from "../utils/sensorData";
+import React, { useState, useMemo } from "react";
+import { 
+  AnomalyLog, 
+  getSeverityColor, 
+  extractRooms,
+  SensorDataItem,
+  parseSensorDetail 
+} from "../utils/sensorData";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/extensions/shadcn/components/select";
 
 interface Props {
   anomaly: AnomalyLog;
-  onUpdateStatus: (anomalyId: string, status: ReviewStatus, notes?: string) => void;
+  onUpdateStatus: (anomalyId: string, status: 'normal' | 'anomalous', notes?: string) => void;
   onClose?: () => void;
 }
 
 export function AnomalyDetail({ anomaly, onUpdateStatus, onClose }: Props) {
-  const [selectedStatus, setSelectedStatus] = useState<ReviewStatus>(anomaly.reviewStatus);
+  const [selectedStatus, setSelectedStatus] = useState<'normal' | 'anomalous'>(
+    anomaly.reviewStatus === 'normal' || anomaly.reviewStatus === 'anomalous' 
+      ? anomaly.reviewStatus 
+      : 'anomalous'
+  );
   const [notes, setNotes] = useState(anomaly.reviewNotes || "");
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  const handleSubmit = (e: React.FormEvent) => {
+  console.log("Anomaly in Detail component:", {
+    anomaly,
+    situationDetails: anomaly.situation?.details,
+  });
+
+  // Extract rooms using the situation details
+  const rooms = useMemo(() => {
+    if (!anomaly.situation?.details) {
+      console.log("No situation details found");
+      return "Unknown Location";
+    }
+
+    try {
+      // Parse each detail string to get room information
+      const parsedDetails = anomaly.situation.details.map(detail => {
+        const parsed = parseSensorDetail(detail);
+        console.log("Parsed detail:", parsed);
+        return parsed;
+      });
+
+      // Get unique rooms
+      const uniqueRooms = new Set(parsedDetails.map(detail => detail.room));
+      const roomList = Array.from(uniqueRooms);
+      
+      console.log("Found rooms:", roomList);
+      
+      return roomList.length > 0 ? roomList.join(", ") : "Unknown Location";
+    } catch (error) {
+      console.error("Error parsing room data:", error);
+      return "Unknown Location";
+    }
+  }, [anomaly]);
+
+  const date = new Date(anomaly.timestamp * 1000);
+  const severityClass = getSeverityColor(anomaly.severityLevel);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Update the anomaly status
-    onUpdateStatus(anomaly.id, selectedStatus, notes);
-    
-    setIsSubmitting(false);
-    
-    // Close the detail view if a callback was provided
-    if (onClose) {
-      onClose();
+    try {
+      await onUpdateStatus(anomaly.id, selectedStatus, notes);
+      
+      if (onClose) {
+        onClose();
+      }
+    } catch (error) {
+      console.error('Failed to update status:', error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
-  
-  const date = new Date(anomaly.timestamp * 1000);
-  const severityClass = getSeverityColor(anomaly.severityLevel);
-  
+
   return (
     <div className="bg-white rounded-lg border border-gray-200 shadow-md">
       <div className="flex justify-between items-center border-b border-gray-200 p-4">
@@ -52,7 +98,7 @@ export function AnomalyDetail({ anomaly, onUpdateStatus, onClose }: Props) {
         <div className="mb-6">
           <div className="flex items-start justify-between">
             <h3 className="font-medium text-gray-900 text-lg">
-              Anomaly in {anomaly.roomLocation}
+              Anomaly in {rooms}
             </h3>
             <span className="text-sm text-gray-500">
               ID: {anomaly.id}
@@ -107,18 +153,21 @@ export function AnomalyDetail({ anomaly, onUpdateStatus, onClose }: Props) {
             <label htmlFor="review-status" className="block text-sm font-medium text-gray-700 mb-1">
               Update Status
             </label>
-            <select
-              id="review-status"
-              className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            <Select 
+              defaultValue={selectedStatus}
               value={selectedStatus}
-              onChange={(e) => setSelectedStatus(e.target.value as ReviewStatus)}
-              required
+              onValueChange={(value) => setSelectedStatus(value as 'normal' | 'anomalous')}
             >
-              <option value="pending">Pending Review</option>
-              <option value="reviewed">Reviewed - No Action Needed</option>
-              <option value="dismissed">Dismissed - False Positive</option>
-              <option value="escalated">Escalated - Requires Attention</option>
-            </select>
+              <SelectTrigger className="w-full">
+                <SelectValue>
+                  {selectedStatus === 'normal' ? 'Normal' : 'Anomalous'}
+                </SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="normal">Normal</SelectItem>
+                <SelectItem value="anomalous">Anomalous</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
           
           <div className="mb-4">

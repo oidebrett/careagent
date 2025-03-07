@@ -6,6 +6,14 @@ import { SensorReadings } from "components/SensorReadings";
 import { AnomalyList } from "components/AnomalyList";
 import { useNavigate } from "react-router-dom";
 
+const isDataStale = (data: any[]): boolean => {
+  if (!data.length) return true;
+  
+  const latestTimestamp = Math.max(...data.map(i => i.situation.end_timestamp * 1000));
+  const oneHourAgo = Date.now() - (60 * 60 * 1000);
+  return latestTimestamp < oneHourAgo;
+};
+
 export default function App() {
   const navigate = useNavigate();
   const { data, anomalyLogs, loading, error } = useSensorData();
@@ -95,7 +103,8 @@ export default function App() {
                 value={data.length > 0 
                   ? new Date(Math.max(...data.map(i => i.situation.end_timestamp * 1000))).toLocaleTimeString() 
                   : "N/A"}
-                description="System is monitoring"
+                description={isDataStale(data) ? "System is not monitoring" : "System is monitoring"}
+                type={isDataStale(data) ? "critical" : "success"}
               />
               
               <StatusCard 

@@ -8,12 +8,18 @@ import { useNavigate } from "react-router-dom";
 
 const AnomalyPage: FC = () => {
   const navigate = useNavigate();
-  const { anomalyLogs, loading, error, updateAnomalyStatus } = useSensorData();
+  const { anomalyLogs, loading, error, updateAnomalyStatus, data } = useSensorData();
   const [selectedAnomaly, setSelectedAnomaly] = useState<AnomalyLogType | null>(null);
   const pendingCount = countPendingAnomalies(anomalyLogs);
   
   const handleSelectAnomaly = (anomaly: AnomalyLogType) => {
-    setSelectedAnomaly(anomaly);
+    // Find the full situation data for this anomaly
+    const fullAnomaly = {
+      ...anomaly,
+      situation: data?.find(item => item.anomalyId === anomaly.id)?.situation
+    };
+    console.log("Enhanced anomaly with situation:", fullAnomaly);
+    setSelectedAnomaly(fullAnomaly);
   };
   
   const handleCloseDetail = () => {

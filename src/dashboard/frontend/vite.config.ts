@@ -47,8 +47,8 @@ const buildVariables = () => {
 	const defines: Record<string, string> = {
 		__APP_ID__: JSON.stringify(appId),
 		__API_PATH__: JSON.stringify(""),
-		__API_URL__: JSON.stringify("http://localhost:8000"),
-		__WS_API_URL__: JSON.stringify("ws://localhost:8000"),
+		__API_URL__: JSON.stringify("http://localhost:8080"),
+		__WS_API_URL__: JSON.stringify("ws://localhost:8080"),
 		__APP_BASE_PATH__: JSON.stringify("/"),
 		__APP_TITLE__: JSON.stringify("Databutton"),
 		__APP_FAVICON_LIGHT__: JSON.stringify("/favicon-light.svg"),
@@ -66,23 +66,21 @@ const buildVariables = () => {
 
 // https://vite.dev/config/
 export default defineConfig({
-	define: buildVariables(),
 	plugins: [react(), splitVendorChunkPlugin(), tsConfigPaths(), injectHTML()],
 	server: {
+		port: 5173,
 		proxy: {
-			"/routes": {
-				target: "http://127.0.0.1:8080",
+			'/api': {
+				target: 'http://localhost:8080',
 				changeOrigin: true,
-			},
-		},
+				secure: false,
+			}
+		}
 	},
+	define: buildVariables(),
 	resolve: {
 		alias: {
-			resolve: {
-				alias: {
-					"@": path.resolve(__dirname, "./src"),
-				},
-			},
+			"@": path.resolve(__dirname, "./src"),
 		},
 	},
 });

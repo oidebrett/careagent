@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import memoryData from '/home/ivob/Projects/careagent/data/memory.json';
 
 // Define types for our sensor data
 export interface SensorDetail {
@@ -52,79 +51,85 @@ export const useSensorData = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  useEffect(() => {
-    const loadData = () => {
-      try {
-        // Transform memory data into SensorDataItem format
-        const transformedData: SensorDataItem[] = memoryData.map((item: any) => ({
-          situation: {
-            situation_description: item.situation.situation_description,
-            result: item.situation.result,
-            start_timestamp: item.situation.start_timestamp,
-            end_timestamp: item.situation.end_timestamp,
-            details: item.situation.details
-          },
-          estimate: item.estimate,
-          anomalyId: item.estimate === 'anomalous' ? generateId() : undefined
+  const loadData = useCallback(async () => {
+    try {
+      const response = await fetch('/api/sensor-data');
+      if (!response.ok) throw new Error('Failed to fetch sensor data');
+      
+      const memoryData = await response.json();
+      
+      // Transform memory data into SensorDataItem format
+      const transformedData: SensorDataItem[] = memoryData.map((item: any) => ({
+        situation: {
+          situation_description: item.situation.situation_description,
+          result: item.situation.result,
+          start_timestamp: item.situation.start_timestamp,
+          end_timestamp: item.situation.end_timestamp,
+          details: item.situation.details
+        },
+        estimate: item.estimate,
+        anomalyId: item.estimate === 'anomalous' ? generateId() : undefined
+      }));
+
+      // Create anomaly logs for anomalous situations
+      const newAnomalyLogs: AnomalyLog[] = transformedData
+        .filter(item => item.estimate === 'anomalous')
+        .map(item => ({
+          id: item.anomalyId!,
+          timestamp: item.situation.end_timestamp,
+          description: item.situation.situation_description,
+          severityLevel: 'medium',
+          reviewStatus: 'pending',
+          relatedSensors: [],
+          roomLocation: '',
+          detectionConfidence: 75,
+          situationId: generateId()
         }));
 
-        // Create anomaly logs for anomalous situations
-        const newAnomalyLogs: AnomalyLog[] = transformedData
-          .filter(item => item.estimate === 'anomalous')
-          .map(item => ({
-            id: item.anomalyId!,
-            timestamp: item.situation.end_timestamp,
-            description: item.situation.situation_description,
-            severityLevel: 'medium',
-            reviewStatus: 'pending',
-            relatedSensors: [],
-            roomLocation: '',
-            detectionConfidence: 75,
-            situationId: generateId()
-          }));
+      setData(transformedData);
+      setAnomalyLogs(newAnomalyLogs);
+      setLoading(false);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error('Unknown error occurred'));
+      setLoading(false);
+    }
+  }, []);
 
-        setData(transformedData);
-        setAnomalyLogs(newAnomalyLogs);
-        setLoading(false);
-      } catch (err) {
-        setError(err instanceof Error ? err : new Error('Unknown error occurred'));
-        setLoading(false);
-      }
-    };
+  const updateAnomalyStatus = useCallback(async (anomalyId: string, status: 'normal' | 'anomalous', notes?: string) => {
+    try {
+      // Find the index of the situation in the data array
+      const situationIndex = data.findIndex(item => item.anomalyId === anomalyId);
+      if (situationIndex === -1) throw new Error('Situation not found');
 
-    // Initial load
+      // Update the backend
+      const response = await fetch(`/api/sensor-data/${situationIndex}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          index: situationIndex,
+          estimate: status
+        })
+      });
+
+      if (!response.ok) throw new Error('Failed to update situation');
+
+      // Immediately reload the data after update
+      await loadData();
+
+    } catch (error) {
+      console.error('Error updating anomaly status:', error);
+      throw error;
+    }
+  }, [data, loadData]);
+
+  useEffect(() => {
     loadData();
-
-    // Set up periodic reloading
-    const intervalId = setInterval(() => {
-      // Note: This will reload the same data since imports are static
-      // You would need a different approach to detect file changes
-      loadData();
-    }, 10000);
-
+    
+    const intervalId = setInterval(loadData, 10000);
     return () => clearInterval(intervalId);
-  }, []);
-
-  // Function to update an anomaly's review status
-  const updateAnomalyStatus = useCallback((anomalyId: string, status: ReviewStatus, notes?: string) => {
-    setAnomalyLogs(prevLogs => 
-      prevLogs.map(log => 
-        log.id === anomalyId 
-          ? { ...log, reviewStatus: status, reviewNotes: notes || log.reviewNotes }
-          : log
-      )
-    );
-  }, []);
-
-  // Function to get all anomalies
-  const getAnomalies = useCallback(() => {
-    return anomalyLogs;
-  }, [anomalyLogs]);
-
-  // Function to get a specific anomaly by ID
-  const getAnomalyById = useCallback((id: string) => {
-    return anomalyLogs.find(anomaly => anomaly.id === id) || null;
-  }, [anomalyLogs]);
+  }, [loadData]);
 
   return { 
     data, 
@@ -132,8 +137,7 @@ export const useSensorData = () => {
     loading, 
     error,
     updateAnomalyStatus,
-    getAnomalies,
-    getAnomalyById
+    loadData  // Export loadData in case we need to trigger refresh elsewhere
   };
 };
 
