@@ -440,5 +440,82 @@
       ]
     },
     "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "During this 6-hour interval, the kitchen was recorded multiple times. At 13:35, there was a measurement of relative humidity in the kitchen. Shortly after, at 13:44, a temperature measurement was taken in the same room. These entries indicate some activity in the kitchen area during this time.",
+      "result": "normal",
+      "start_timestamp": 1741354507,
+      "end_timestamp": 1741355047,
+      "details": [
+        "{\"timestamp\": 1741354507, \"datetime\": \"Fri Mar 07 2025 13:35:07\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5871}}}",
+        "{\"timestamp\": 1741355047, \"datetime\": \"Fri Mar 07 2025 13:44:07\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1836}}}"
+      ]
+    },
+    "estimate": "anomalous"
+  },
+  {
+    "situation": {
+      "situation_description": "During this period, several sensor readings were recorded in the kitchen. The temperature measurement indicated a value of 1887, while the relative humidity reading showed a value of 5805. Additionally, diagnostic data noted a total operational hours of 351 and an uptime of 1267099 seconds. These metrics reflect the functioning state of the kitchen's monitoring systems without indicating any specific movement patterns.",
+      "result": "normal",
+      "start_timestamp": 1741610681,
+      "end_timestamp": 1741610682,
+      "details": [
+        "{\"timestamp\": 1741610681, \"datetime\": \"Mon Mar 10 2025 12:44:41\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1887}}}",
+        "{\"timestamp\": 1741610681, \"datetime\": \"Mon Mar 10 2025 12:44:41\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 0, \"attribute\": {\"EthernetNetworkDiagnostics\": {\"TimeSinceReset\": 1267099}}}",
+        "{\"timestamp\": 1741610681, \"datetime\": \"Mon Mar 10 2025 12:44:41\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5805}}}",
+        "{\"timestamp\": 1741610682, \"datetime\": \"Mon Mar 10 2025 12:44:42\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 0, \"attribute\": {\"GeneralDiagnostics\": {\"TotalOperationalHours\": 351}}}",
+        "{\"timestamp\": 1741610682, \"datetime\": \"Mon Mar 10 2025 12:44:42\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 0, \"attribute\": {\"GeneralDiagnostics\": {\"UpTime\": 1267099}}}"
+      ]
+    },
+    "estimate": "anomalous"
+  },
+  {
+    "situation": {
+      "situation_description": "On March 10, 2025, from 18:53 to 24:53, there was a recorded measurement of relative humidity in the kitchen room. The humidity level was noted at 5709, indicating a specific environmental condition during this period. No human movement or other sensor events were logged within this time frame. The sole log entry was related to environmental monitoring.",
+      "result": "normal",
+      "start_timestamp": 1741632838,
+      "end_timestamp": 1741668438,
+      "details": [
+        "{\"timestamp\": 1741632838, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5709}}}"
+      ]
+    },
+    "estimate": "anomalous"
+  },
+  {
+    "situation": {
+      "situation_description": "During the early morning hours, there was activity recorded in the kitchen at 00:54. The kitchen sensor detected a relative humidity measurement at this time. This indicates that there was some environmental change occurring. No further movements or events were logged during this period.",
+      "result": "normal",
+      "start_timestamp": 1741654445,
+      "end_timestamp": 1741654445,
+      "details": [
+        "{\"timestamp\": 1741654445, \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5676}}}"
+      ]
+    },
+    "estimate": "anomalous"
+  },
+  {
+    "situation": {
+      "situation_description": "On March 11, 2025, from 06:54 to 12:54, there was a recorded measurement of relative humidity in the kitchen room. The humidity level was noted at 55.03%. No movements or additional sensor events were captured during this 6-hour period. The log indicates a single event related to the kitchen environment. This scenario reflects a monitoring event without further activities recorded.",
+      "result": "normal",
+      "start_timestamp": 1741676051,
+      "end_timestamp": 1741697651,
+      "details": [
+        "{\"timestamp\": 1741676051, \"datetime\": \"Tue Mar 11 2025 06:54:11\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5503}}}"
+      ]
+    },
+    "estimate": "anomalous"
+  },
+  {
+    "situation": {
+      "situation_description": "On March 11, 2025, at 12:54 PM, a log entry recorded a measurement in the kitchen. The recorded humidity level was 5016. There were no additional entries or movements during this hour. The singular observation suggests activity in the kitchen space.",
+      "result": "normal",
+      "start_timestamp": 1741697657,
+      "end_timestamp": 1741697657,
+      "details": [
+        "{\"timestamp\": 1741697657, \"datetime\": \"Tue Mar 11 2025 12:54:17\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5016}}}"
+      ]
+    },
+    "estimate": "anomalous"
   }
 ]

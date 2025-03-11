@@ -28,6 +28,14 @@ export interface AnomalyLog {
   severityLevel: SeverityLevel;
   reviewStatus: ReviewStatus;
   reviewNotes?: string;
+  situation: {
+    situation_description: string;
+    result: string;
+    start_timestamp: number;
+    end_timestamp: number;
+    details: string[];
+  };
+  estimate: string;
   relatedSensors: string[];
   roomLocation: string;
   detectionConfidence: number; // 0-100 percent
