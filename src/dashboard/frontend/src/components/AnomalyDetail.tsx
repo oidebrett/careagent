@@ -22,19 +22,24 @@ export function AnomalyDetail({ anomaly, onUpdateStatus, onClose }: Props) {
 
   // Memoize the parsed logs to avoid re-parsing on every render
   const formattedLogs = useMemo(() => {
-    return anomaly.situation?.details?.map(logString => {
+    if (!anomaly.situation?.details) {
+      return [];
+    }
+
+    return anomaly.situation.details.map(logString => {
       try {
-        const log = JSON.parse(logString);
+        const parsed = parseSensorDetail(logString);
         return {
-          datetime: log.datetime,
-          room: log.room,
-          attribute: Object.keys(log.attribute)[0],
-          value: JSON.stringify(Object.values(log.attribute)[0])
+          datetime: parsed.datetime,
+          room: parsed.room,
+          attribute: Object.keys(parsed.attribute)[0],
+          value: JSON.stringify(Object.values(parsed.attribute)[0])
         };
       } catch (e) {
+        console.error('Error parsing log:', e, logString);
         return { datetime: '', room: '', attribute: '', value: logString };
       }
-    }) || [];
+    });
   }, [anomaly.situation?.details]);
   
   console.log("Anomaly in Detail component:", {

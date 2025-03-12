@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AnomalyLog as AnomalyLogComponent } from "./AnomalyLog";
 import { 
   AnomalyLog as AnomalyLogType, 
@@ -14,6 +15,7 @@ interface Props {
   title?: string;
   compact?: boolean;
   showFilters?: boolean;
+  showBackToDashboard?: boolean;
 }
 
 export function AnomalyList({ 
@@ -21,15 +23,21 @@ export function AnomalyList({
   onSelectAnomaly, 
   title = "Anomalies", 
   compact = false,
-  showFilters = true 
+  showFilters = true,
+  showBackToDashboard = true
 }: Props) {
+  const navigate = useNavigate();
   const [severityFilter, setSeverityFilter] = useState<SeverityLevel | undefined>();
-  const [statusFilter, setStatusFilter] = useState<ReviewStatus | undefined>();
+  const [statusFilter, setStatusFilter] = useState<'normal' | 'anomalous' | undefined>();
 
   // Apply filters
   let filteredAnomalies = [...anomalies];
   filteredAnomalies = filterAnomaliesBySeverity(filteredAnomalies, severityFilter);
-  filteredAnomalies = filterAnomaliesByStatus(filteredAnomalies, statusFilter);
+
+  // Filter by estimate (normal/anomalous)
+  if (statusFilter) {
+    filteredAnomalies = filterAnomaliesByStatus(filteredAnomalies, statusFilter);
+  }
 
   // Sort by timestamp (newest first)
   filteredAnomalies.sort((a, b) => b.timestamp - a.timestamp);
@@ -37,10 +45,22 @@ export function AnomalyList({
   return (
     <div className="rounded-lg border border-gray-200 bg-white">
       <div className="border-b border-gray-200 p-4">
-        <h2 className="text-lg font-medium">{title}</h2>
-        <p className="text-sm text-gray-500 mt-1">
-          {filteredAnomalies.length} {filteredAnomalies.length === 1 ? 'anomaly' : 'anomalies'} detected
-        </p>
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-lg font-medium">{title}</h2>
+            <p className="text-sm text-gray-500 mt-1">
+              {filteredAnomalies.length} {filteredAnomalies.length === 1 ? 'anomaly' : 'anomalies'} detected
+            </p>
+          </div>
+          {showBackToDashboard && (
+            <button
+              onClick={() => navigate('/')}
+              className="text-sm text-blue-600 hover:text-blue-800"
+            >
+              Back to Dashboard
+            </button>
+          )}
+        </div>
       </div>
       
       {showFilters && (
@@ -72,13 +92,11 @@ export function AnomalyList({
                 id="status-filter"
                 className="rounded-md border-gray-300 shadow-sm text-sm focus:border-blue-500 focus:ring-blue-500"
                 value={statusFilter || ''}
-                onChange={(e) => setStatusFilter(e.target.value as ReviewStatus || undefined)}
+                onChange={(e) => setStatusFilter(e.target.value || undefined)}
               >
                 <option value="">All Statuses</option>
-                <option value="pending">Pending</option>
-                <option value="reviewed">Reviewed</option>
-                <option value="dismissed">Dismissed</option>
-                <option value="escalated">Escalated</option>
+                <option value="normal">Normal</option>
+                <option value="anomalous">Anomalous</option>
               </select>
             </div>
           </div>
@@ -105,3 +123,5 @@ export function AnomalyList({
     </div>
   );
 }
+
+

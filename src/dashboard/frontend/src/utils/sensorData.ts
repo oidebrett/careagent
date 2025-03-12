@@ -35,11 +35,11 @@ export interface AnomalyLog {
     end_timestamp: number;
     details: string[];
   };
-  estimate: string;
   relatedSensors: string[];
   roomLocation: string;
   detectionConfidence: number; // 0-100 percent
   situationId?: string; // Reference to the situation that generated this anomaly
+  estimate: 'normal' | 'anomalous';  // Add this field
 }
 
 export interface SensorDataItem {
@@ -51,6 +51,16 @@ export interface SensorDataItem {
 // Generate a unique ID
 export const generateId = () => {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+};
+
+const extractRoomFromDetails = (details: string[]): string => {
+  if (details.length === 0) return '';
+  try {
+    const firstDetail = JSON.parse(details[0]);
+    return firstDetail.room || '';
+  } catch {
+    return '';
+  }
 };
 
 export const useSensorData = () => {
@@ -75,11 +85,11 @@ export const useSensorData = () => {
           end_timestamp: item.situation.end_timestamp,
           details: item.situation.details
         },
-        estimate: item.estimate,
+        estimate: item.estimate,  // Use the estimate field directly from the data
         anomalyId: item.estimate === 'anomalous' ? generateId() : undefined
       }));
 
-      // Create anomaly logs for anomalous situations
+      // Create anomaly logs only for situations marked as anomalous in the estimate field
       const newAnomalyLogs: AnomalyLog[] = transformedData
         .filter(item => item.estimate === 'anomalous')
         .map(item => ({
@@ -89,9 +99,10 @@ export const useSensorData = () => {
           severityLevel: 'medium',
           reviewStatus: 'pending',
           relatedSensors: [],
-          roomLocation: '',
+          roomLocation: extractRoomFromDetails(item.situation.details),  // Add helper function to extract room
           detectionConfidence: 75,
-          situationId: generateId()
+          situationId: generateId(),
+          estimate: item.estimate  // Make sure to include the estimate field
         }));
 
       setData(transformedData);
@@ -179,10 +190,10 @@ export const countPendingAnomalies = (anomalyLogs: AnomalyLog[]): number => {
   return anomalyLogs.filter(log => log.reviewStatus === 'pending').length;
 };
 
-export const filterAnomaliesByStatus = (anomalyLogs: AnomalyLog[], status?: ReviewStatus): AnomalyLog[] => {
-  if (!status) return anomalyLogs;
-  return anomalyLogs.filter(log => log.reviewStatus === status);
-};
+export function filterAnomaliesByStatus(anomalies: AnomalyLog[], status?: 'normal' | 'anomalous'): AnomalyLog[] {
+  if (!status) return anomalies;
+  return anomalies.filter(anomaly => anomaly.estimate === status);
+}
 
 export const filterAnomaliesBySeverity = (anomalyLogs: AnomalyLog[], severity?: SeverityLevel): AnomalyLog[] => {
   if (!severity) return anomalyLogs;
