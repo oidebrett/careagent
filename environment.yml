@@ -27,4 +27,4 @@ dependencies:
       - anthropic
       - tabpfn
       - uv
-
+      - uvicorn
