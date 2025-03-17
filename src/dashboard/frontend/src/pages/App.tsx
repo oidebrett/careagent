@@ -28,7 +28,7 @@ export default function App() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Guardian Pulse</h1>
+              <h1 className="text-2xl font-bold text-gray-900">Care Agents</h1>
               <p className="text-sm text-gray-500">Smart home monitoring for elderly care</p>
             </div>
             {/* Placeholder for user menu/settings button */}
@@ -161,7 +161,7 @@ export default function App() {
       <footer className="bg-white border-t border-gray-200 mt-12">
         <div className="container mx-auto px-4 py-6">
           <p className="text-center text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Guardian Pulse | Smart Home Monitoring for Elderly Care
+            &copy; {new Date().getFullYear()} Care Agents | Smart Home Monitoring for Elderly Care
           </p>
         </div>
       </footer>

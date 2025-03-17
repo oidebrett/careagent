@@ -99,10 +99,17 @@ export const useSensorData = () => {
           severityLevel: 'medium',
           reviewStatus: 'pending',
           relatedSensors: [],
-          roomLocation: extractRoomFromDetails(item.situation.details),  // Add helper function to extract room
+          roomLocation: extractRoomFromDetails(item.situation.details),
           detectionConfidence: 75,
           situationId: generateId(),
-          estimate: item.estimate  // Make sure to include the estimate field
+          estimate: item.estimate,
+          situation: {  // Make sure we're including the full situation
+            situation_description: item.situation.situation_description,
+            result: item.situation.result,
+            start_timestamp: item.situation.start_timestamp,
+            end_timestamp: item.situation.end_timestamp,
+            details: item.situation.details
+          }
         }));
 
       setData(transformedData);
@@ -116,8 +123,16 @@ export const useSensorData = () => {
 
   const updateAnomalyStatus = useCallback(async (anomalyId: string, status: 'normal' | 'anomalous', notes?: string) => {
     try {
-      // Find the index of the situation in the data array
-      const situationIndex = data.findIndex(item => item.anomalyId === anomalyId);
+      // Find the anomaly log first
+      const anomalyLog = anomalyLogs.find(log => log.id === anomalyId);
+      if (!anomalyLog) throw new Error('Anomaly not found');
+
+      // Find the matching situation by timestamp
+      const situationIndex = data.findIndex(item => 
+        item.situation.start_timestamp === anomalyLog.situation.start_timestamp &&
+        item.situation.end_timestamp === anomalyLog.situation.end_timestamp
+      );
+      
       if (situationIndex === -1) throw new Error('Situation not found');
 
       // Update the backend
@@ -141,7 +156,7 @@ export const useSensorData = () => {
       console.error('Error updating anomaly status:', error);
       throw error;
     }
-  }, [data, loadData]);
+  }, [data, anomalyLogs, loadData]);
 
   useEffect(() => {
     loadData();

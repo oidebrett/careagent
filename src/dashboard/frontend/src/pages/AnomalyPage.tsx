@@ -16,8 +16,12 @@ const AnomalyPage: FC = () => {
   };
 
   const handleUpdateStatus = async (anomalyId: string, status: 'normal' | 'anomalous', notes?: string) => {
-    await updateAnomalyStatus(anomalyId, status, notes);
-    setSelectedAnomaly(null);
+    try {
+      await updateAnomalyStatus(anomalyId, status, notes);
+      setSelectedAnomaly(null);
+    } catch (error) {
+      console.error('Failed to update anomaly status:', error);
+    }
   };
 
   const handleCloseDetail = () => {
@@ -30,7 +34,7 @@ const AnomalyPage: FC = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Guardian Pulse</h1>
+              <h1 className="text-2xl font-bold text-gray-900">Care Agents</h1>
               <p className="text-sm text-gray-500">Review and manage detected anomalies</p>
             </div>
             <div className="flex items-center space-x-3">

@@ -15,7 +15,7 @@ interface Props {
 }
 
 export function AnomalyDetail({ anomaly, onUpdateStatus, onClose }: Props) {
-  const [selectedStatus, setSelectedStatus] = useState<ReviewStatus>(anomaly.reviewStatus);
+  const [selectedStatus, setSelectedStatus] = useState<'normal' | 'anomalous'>(anomaly.estimate);
   const [notes, setNotes] = useState(anomaly.reviewNotes || "");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showLogs, setShowLogs] = useState(false);
@@ -23,29 +23,33 @@ export function AnomalyDetail({ anomaly, onUpdateStatus, onClose }: Props) {
   // Memoize the parsed logs to avoid re-parsing on every render
   const formattedLogs = useMemo(() => {
     if (!anomaly.situation?.details) {
+      console.log("No details found in situation:", anomaly.situation);
       return [];
     }
-
-    return anomaly.situation.details.map(logString => {
-      try {
-        const parsed = parseSensorDetail(logString);
-        return {
-          datetime: parsed.datetime,
-          room: parsed.room,
-          attribute: Object.keys(parsed.attribute)[0],
-          value: JSON.stringify(Object.values(parsed.attribute)[0])
-        };
-      } catch (e) {
-        console.error('Error parsing log:', e, logString);
-        return { datetime: '', room: '', attribute: '', value: logString };
-      }
-    });
+    
+    return anomaly.situation.details;
   }, [anomaly.situation?.details]);
-  
-  console.log("Anomaly in Detail component:", {
-    anomaly,
-    situationDetails: anomaly.situation?.details,
-  });
+
+  console.log("Situation details:", anomaly.situation?.details); // Add this for debugging
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      await onUpdateStatus(anomaly.id, selectedStatus, notes);
+      
+      if (onClose) {
+        onClose();
+      }
+    } catch (error) {
+      console.error('Failed to update status:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  console.log("Rendering AnomalyDetail with logs:", formattedLogs);
 
   // Extract rooms using the situation details
   const rooms = useMemo(() => {
@@ -97,23 +101,6 @@ export function AnomalyDetail({ anomaly, onUpdateStatus, onClose }: Props) {
     
     return Array.from(uniqueSensors);
   }, [anomaly.situation?.details]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      await onUpdateStatus(anomaly.id, selectedStatus, notes);
-      
-      if (onClose) {
-        onClose();
-      }
-    } catch (error) {
-      console.error('Failed to update status:', error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 shadow-md">
@@ -216,9 +203,7 @@ export function AnomalyDetail({ anomaly, onUpdateStatus, onClose }: Props) {
                   <div key={index} className="text-sm font-mono">
                     <div className="flex items-start">
                       <span className="text-gray-400 mr-2">{index + 1}.</span>
-                      <span className="text-gray-700">
-                        {log.datetime} - {log.room} - {log.attribute}: {log.value}
-                      </span>
+                      <span className="text-gray-700">{log}</span>
                     </div>
                   </div>
                 ))}
@@ -231,64 +216,64 @@ export function AnomalyDetail({ anomaly, onUpdateStatus, onClose }: Props) {
         </div>
 
         {/* Review form */}
-        <div className="mt-6 border-t border-gray-200 pt-4">
-          <h4 className="text-sm font-medium text-gray-700 mb-3">Update Status</h4>
-          
-          <div className="mb-4">
-            <label htmlFor="review-status" className="block text-sm font-medium text-gray-700 mb-1">
-              Update Status
-            </label>
-            <Select 
-              defaultValue={selectedStatus}
-              value={selectedStatus}
-              onValueChange={(value) => setSelectedStatus(value as ReviewStatus)}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue>
-                  {selectedStatus === 'normal' ? 'Normal' : 'Anomalous'}
-                </SelectValue>
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="normal">Normal</SelectItem>
-                <SelectItem value="anomalous">Anomalous</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          
-          <div className="mb-4">
-            <label htmlFor="review-notes" className="block text-sm font-medium text-gray-700 mb-1">
-              Review Notes
-            </label>
-            <textarea
-              id="review-notes"
-              className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-              rows={3}
-              placeholder="Add notes about this anomaly..."
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-            ></textarea>
-          </div>
-          
-          <div className="flex justify-end gap-3">
-            {onClose && (
-              <button
-                type="button"
-                className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                onClick={onClose}
+        <form onSubmit={handleSubmit}>
+          <div className="mt-6 border-t border-gray-200 pt-4">            
+            <div className="mb-4">
+              <label htmlFor="review-status" className="block text-sm font-medium text-gray-700 mb-1">
+                Update Status
+              </label>
+              <Select 
+                defaultValue={selectedStatus}
+                value={selectedStatus}
+                onValueChange={(value) => setSelectedStatus(value as ReviewStatus)}
               >
-                Cancel
-              </button>
-            )}
+                <SelectTrigger className="w-full">
+                  <SelectValue>
+                    {selectedStatus === 'normal' ? 'Normal' : 'Anomalous'}
+                  </SelectValue>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="normal">Normal</SelectItem>
+                  <SelectItem value="anomalous">Anomalous</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
             
-            <button
-              type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Updating..." : "Update Anomaly"}
-            </button>
+            <div className="mb-4">
+              <label htmlFor="review-notes" className="block text-sm font-medium text-gray-700 mb-1">
+                Review Notes
+              </label>
+              <textarea
+                id="review-notes"
+                className="w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                rows={3}
+                placeholder="Add notes about this anomaly..."
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+              ></textarea>
+            </div>
+            
+            <div className="flex justify-end gap-3">
+              {onClose && (
+                <button
+                  type="button"
+                  className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  onClick={onClose}
+                >
+                  Cancel
+                </button>
+              )}
+              
+              <button
+                type="submit"
+                className="px-4 py-2 bg-blue-600 text-white rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Updating..." : "Update Anomaly"}
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
