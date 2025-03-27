@@ -25,7 +25,7 @@ class QueueHandler(logging.Handler):
 def html_for(log_data):
     output = '<br>'.join(log_data[-18:])
     return f"""
-    <div id="scrollContent" style="height: 400px; overflow-y: auto; border: 1px solid #ccc; background-color: #d3d3d3; padding: 10px;">
+    <div id="scrollContent" style="height: 400px; overflow-y: auto; border: 1px solid #ccc; background-color: #808080; padding: 10px;">
     {output}
     </div>
     """

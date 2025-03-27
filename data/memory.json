@@ -452,7 +452,7 @@
         "{\"timestamp\": 1741355047, \"datetime\": \"Fri Mar 07 2025 13:44:07\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1836}}}"
       ]
     },
-    "estimate": "anomalous"
+    "estimate": "normal"
   },
   {
     "situation": {
@@ -535,43 +535,30 @@
   },
   {
     "situation": {
-      "situation_description": "During the 6-hour period, sensor activity was primarily noted in the kitchen. There were multiple instances of occupancy detected, suggesting movement within the space. Temperature measurements recorded fluctuated around a range indicative of typical kitchen conditions. Additionally, relative humidity was monitored regularly, showing gradual changes throughout the duration. The final logs in this block indicated the kitchen remained occupied towards the end of the period.",
+      "situation_description": "During this period, there were several activities recorded in the kitchen. The first activity was logged at 19:48:33, indicating that a device in the kitchen was turned on. Shortly thereafter, at 19:48:42, another such device was also activated. Later, at 19:51:40, a device was turned off, followed by the activation of a different device at 19:51:49. This series of events suggests multiple interactions with devices in the kitchen.",
       "result": "normal",
-      "start_timestamp": 1741805690,
-      "end_timestamp": 1741810120,
+      "start_timestamp": 1742240913,
+      "end_timestamp": 1742241109,
       "details": [
-        "{\"timestamp\": 1741805690, \"datetime\": \"Wed Mar 12 2025 18:54:50\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5565}}}",
-        "{\"timestamp\": 1741806130, \"datetime\": \"Wed Mar 12 2025 19:02:10\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1959}}}",
-        "{\"timestamp\": 1741806475, \"datetime\": \"Wed Mar 12 2025 19:07:55\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
-        "{\"timestamp\": 1741806631, \"datetime\": \"Wed Mar 12 2025 19:10:31\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
-        "{\"timestamp\": 1741807341, \"datetime\": \"Wed Mar 12 2025 19:22:21\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
-        "{\"timestamp\": 1741807471, \"datetime\": \"Wed Mar 12 2025 19:24:31\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
-        "{\"timestamp\": 1741807566, \"datetime\": \"Wed Mar 12 2025 19:26:06\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
-        "{\"timestamp\": 1741807569, \"datetime\": \"Wed Mar 12 2025 19:26:09\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
-        "{\"timestamp\": 1741808306, \"datetime\": \"Wed Mar 12 2025 19:38:26\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
-        "{\"timestamp\": 1741808467, \"datetime\": \"Wed Mar 12 2025 19:41:07\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
-        "{\"timestamp\": 1741809291, \"datetime\": \"Wed Mar 12 2025 19:54:51\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5636}}}",
-        "{\"timestamp\": 1741809731, \"datetime\": \"Wed Mar 12 2025 20:02:11\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1954}}}",
-        "{\"timestamp\": 1741812892, \"datetime\": \"Wed Mar 12 2025 20:54:52\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5648}}}",
-        "{\"timestamp\": 1741813332, \"datetime\": \"Wed Mar 12 2025 21:02:12\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1927}}}",
-        "{\"timestamp\": 1741813820, \"datetime\": \"Wed Mar 12 2025 21:10:20\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
-        "{\"timestamp\": 1741815142, \"datetime\": \"Wed Mar 12 2025 21:32:22\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
-        "{\"timestamp\": 1741815210, \"datetime\": \"Wed Mar 12 2025 21:33:30\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
-        "{\"timestamp\": 1741815483, \"datetime\": \"Wed Mar 12 2025 21:38:03\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
-        "{\"timestamp\": 1741815561, \"datetime\": \"Wed Mar 12 2025 21:39:21\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
-        "{\"timestamp\": 1741816224, \"datetime\": \"Wed Mar 12 2025 21:50:24\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
-        "{\"timestamp\": 1741816892, \"datetime\": \"Wed Mar 12 2025 22:01:32\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
-        "{\"timestamp\": 1741816933, \"datetime\": \"Wed Mar 12 2025 22:02:13\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1908}}}",
-        "{\"timestamp\": 1741816977, \"datetime\": \"Wed Mar 12 2025 22:02:57\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
-        "{\"timestamp\": 1741817132, \"datetime\": \"Wed Mar 12 2025 22:05:32\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
-        "{\"timestamp\": 1741818194, \"datetime\": \"Wed Mar 12 2025 22:23:14\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
-        "{\"timestamp\": 1741818349, \"datetime\": \"Wed Mar 12 2025 22:25:49\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
-        "{\"timestamp\": 1741819120, \"datetime\": \"Wed Mar 12 2025 22:38:40\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 0}}}",
-        "{\"timestamp\": 1741819142, \"datetime\": \"Wed Mar 12 2025 22:39:02\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 3, \"attribute\": {\"OccupancySensing\": {\"Occupancy\": 1}}}",
-        "{\"timestamp\": 1741820094, \"datetime\": \"Wed Mar 12 2025 22:54:54\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 6, \"attribute\": {\"RelativeHumidityMeasurement\": {\"MeasuredValue\": 5590}}}",
-        "{\"timestamp\": 1741824135, \"datetime\": \"Thu Mar 13 2025 00:02:15\", \"room\": \"kitchen\", \"nodeId\": 6, \"endpointId\": 5, \"attribute\": {\"TemperatureMeasurement\": {\"MeasuredValue\": 1866}}}"
+        "{\"timestamp\": 1742240913, \"datetime\": \"Mon Mar 17 2025 19:48:33\", \"room\": \"kitchen\", \"nodeId\": 1, \"endpointId\": 1, \"attribute\": {\"OnOff\": {\"OnOff\": true}}}",
+        "{\"timestamp\": 1742240922, \"datetime\": \"Mon Mar 17 2025 19:48:42\", \"room\": \"kitchen\", \"nodeId\": 1, \"endpointId\": 1, \"attribute\": {\"OnOff\": {\"OnOff\": true}}}",
+        "{\"timestamp\": 1742241100, \"datetime\": \"Mon Mar 17 2025 19:51:40\", \"room\": \"kitchen\", \"nodeId\": 5, \"endpointId\": 1, \"attribute\": {\"OnOff\": {\"OnOff\": false}}}",
+        "{\"timestamp\": 1742241109, \"datetime\": \"Mon Mar 17 2025 19:51:49\", \"room\": \"kitchen\", \"nodeId\": 5, \"endpointId\": 1, \"attribute\": {\"OnOff\": {\"OnOff\": true}}}"
       ]
     },
-    "estimate": "anomalous"
+    "estimate": "normal"
+  },
+  {
+    "situation": {
+      "situation_description": "During this 6-hour interval, activity was recorded in the kitchen. At 10:16 AM, the kitchen light was turned on, indicating movement in that area. Shortly after, at 10:17 AM, the kitchen light was turned off. There were no further entries during this period, suggesting limited activity after the initial movement.",
+      "result": "normal",
+      "start_timestamp": 1742293004,
+      "end_timestamp": 1742293032,
+      "details": [
+        "{\"timestamp\": 1742293004, \"datetime\": \"Tue Mar 18 2025 10:16:44\", \"room\": \"kitchen\", \"nodeId\": 5, \"endpointId\": 1, \"attribute\": {\"OnOff\": {\"OnOff\": true}}}",
+        "{\"timestamp\": 1742293032, \"datetime\": \"Tue Mar 18 2025 10:17:12\", \"room\": \"kitchen\", \"nodeId\": 5, \"endpointId\": 1, \"attribute\": {\"OnOff\": {\"OnOff\": false}}}"
+      ]
+    },
+    "estimate": "normal"
   }
 ]
