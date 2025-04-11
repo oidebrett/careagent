@@ -2,7 +2,10 @@
 
 ## Overview
 
-The Care Agent project is designed to monitor and analyze the daily activities of elderly individuals using sensor data. The system detects anomalies in movement patterns and provides insights to ensure their safety and well-being. The project leverages various agents, including a Random Forest Agent and a Scanner Agent, to process and analyze the data.
+The Care Agent project is designed to monitor and analyze the daily activities of elderly individuals using sensor data. The system detects anomalies in movement patterns and provides insights to ensure their safety and well-being. Based on open source and frontier LLMs such as gpt-4o, the project leverages various agents, including a Random Forest Agent and a Scanner Agent, to process and analyze the data.
+
+You can find my rationale for building this proof of concept in this [dev.to article](https://dev.to/mattercoder/building-an-ai-agent-powered-elderly-care-system-a-developers-journey-3g43)
+
 
 ## Features
 
